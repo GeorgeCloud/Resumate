@@ -22,7 +22,6 @@ class JobParser:
                     self.keywords[keyword] += 1
                 else:
                     self.keywords[keyword] = 1
-                break
         print('[*] Finished parsing job listing')
 
     def remove_banned_keywords(self):

@@ -10,6 +10,7 @@ class ResumeBuilder:
         self.user = user
 
     def generate_resume(self):
+        print('[*] Generating resume...')
         resume = file_configuration
 
         resume += self.create_header()
@@ -65,7 +66,8 @@ class ResumeBuilder:
         for experience in self.user.experiences:
             bullets = ""
             for bullet in experience['bullets']:
-                bullets += rf"\resumeItem{{{bullet}}}"
+                escaped_bullet = bullet.replace("%", r"\%")
+                bullets += rf"\resumeItem{{{escaped_bullet}}}"
 
             experience_section += rf"""
             \resumeSubheading
@@ -75,6 +77,8 @@ class ResumeBuilder:
                     {bullets}
                 \resumeItemListEnd
             """
+
+
 
         return experience_section + r"""    \resumeSubHeadingListEnd"""
 
@@ -96,7 +100,6 @@ class ResumeBuilder:
                         {bullets}
                     \resumeItemListEnd
             """
-
         return project_section + r"""    \resumeSubHeadingListEnd"""
 
     def create_education(self):

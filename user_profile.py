@@ -32,6 +32,25 @@ experiences = [{
         'Improved engineer workflow by implementing a Trello ticketing system',
         'Added pagination and caching to API responses to improve server latency by 25%'
     ]  # ChatGPT will modify these
+}, {
+    'title': 'Software Engineer',
+    'company_name': 'Zight',
+    'start_date': 'August 2020',
+    'end_date': 'July 2023',
+    'city_state': 'San Francisco, CA',
+    'stack': {
+        'languages': ['Ruby', 'TypeScript', 'HTML', 'CSS'],
+        'frameworks': ['Ruby on Rails'],
+        'project management': ['Trello'],
+        'databases': ['AWS'],
+    },
+    'bullets': [
+        'Implemented new features to web applications (user activity notifications, file expiration settings, webhooks, analytic tools, monthly user reports)',
+        'Created an automated script to migrate over 200,000+ customers',
+        'Added a video/audio player to enable playback on .wav, .mp4, mp3 files',
+        'Created an automated script to fix over 10,000+ broken links due to database and account errors',
+        'Saved the company $5,000 in annual savings by creating an in-house analysis software feature that tracks user information for our marketing and quality assurance teams]'
+    ]  # ChatGPT will modify these
 }]
 
 projects = [{
@@ -99,6 +118,7 @@ class UserProfile:
         self.linkedin_username = linkedin_username
         self.github_username = github_username
         self.experiences = experiences
+        self.experience_bullets = [bullet for exp in self.experiences for bullet in exp['bullets']]
         self.projects = projects
         self.education = education
         self.skills = skills
