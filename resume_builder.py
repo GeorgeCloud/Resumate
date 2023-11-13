@@ -2,7 +2,7 @@ from resume_settings import file_configuration
 import os
 
 NUM_OF_PROJECTS = 3
-OUTPUT_FILE_NAME = 'GeorgeCeja_Resume.pdf'
+OUTPUT_FILE_NAME = 'resume_output.pdf'
 
 # Returns a resume in Jake's Resume format -> str
 class ResumeBuilder:
@@ -39,13 +39,14 @@ class ResumeBuilder:
 
             print('\n[*] Resume Generated')
         except Exception as e:
-            print("Error:", str(e))
+            print("[*] Error:", str(e))
 
     def create_header(self):
         header_template = r"""
         \begin{center}
             \textbf{\Huge \scshape %s} \\ \vspace{1pt}
-            \small %s $|$ \href{mailto:%s}{\underline{%s}} $|$
+            \small %s $|$
+            \href{mailto:%s}{\underline{%s}} $|$
             \href{https://linkedin.com/in/%s}{\underline{linkedin.com/in/%s}} $|$
             \href{https://github.com/%s}{\underline{github.com/%s}}
         \end{center}
@@ -66,7 +67,7 @@ class ResumeBuilder:
         for experience in self.user.experiences:
             bullets = ""
             for bullet in experience['bullets']:
-                escaped_bullet = bullet.replace("%", r"\%")
+                escaped_bullet = bullet.replace("%", r"\%").replace("$", r" \$")
                 bullets += rf"\resumeItem{{{escaped_bullet}}}"
 
             experience_section += rf"""
@@ -77,8 +78,6 @@ class ResumeBuilder:
                     {bullets}
                 \resumeItemListEnd
             """
-
-
 
         return experience_section + r"""    \resumeSubHeadingListEnd"""
 
@@ -127,4 +126,8 @@ class ResumeBuilder:
             }}
         \end{itemize}
         \end{document}
-        """ % (self.user.stack['languages'], self.user.stack['frameworks'], self.user.stack['developer_tools'], self.user.stack['libraries'])
+        """ % (
+                ', '.join(self.user.stack['languages']),
+                ', '.join(self.user.stack['frameworks']),
+                ', '.join(self.user.stack['developer_tools']),
+                ', '.join(self.user.stack['libraries']))

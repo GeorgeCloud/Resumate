@@ -7,7 +7,7 @@ import os
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-class Bot:
+class ChatGPT:
     def __init__(self, user, job_listing):
         self.probabilty = 0
         self.bullets = []
@@ -31,9 +31,7 @@ class Bot:
         ]
 
         messages.append({'role': 'user', 'content': chat_gpt_query})
-        chat = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo", messages=messages, temperature=0
-        )
+        chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages, temperature=0)
 
         reply = chat.choices[0].message.content
         return reply
@@ -71,8 +69,9 @@ class Bot:
         unsanitized_bullets = self.run_conversion(context, query)
 
         self.bullets = unsanitized_bullets.replace("\n", "").replace(".", "").split('- ')[1:]  # Sanitize special chars.
+        print('bullets:', self.bullets)
 
         for exp_idx, experience in enumerate(user.experiences):
             exp_bullet_len = len(experience['bullets'])
             user.experiences[exp_idx]['bullets'] = self.bullets[:exp_bullet_len]
-            self.bullets = self.bullets[:exp_bullet_len]
+            self.bullets = self.bullets[exp_bullet_len:]

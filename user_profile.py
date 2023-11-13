@@ -92,7 +92,7 @@ projects = [{
 }]
 
 languages       = ['Python', 'JavaScript', 'C++', 'Ruby', 'NoSQL', 'SQL', 'MySQL', 'PostgreSQL', 'MongoDB', 'DynamoDB', 'HTML', 'CSS']
-frameworks      = ['React', 'Rails', 'Django', 'Flask', 'Express', 'Frameworks']
+frameworks      = ['React', 'Ruby on Rails', 'Django', 'Flask', 'Express', 'Frameworks']
 libraries       = ['Redux', 'Axios', 'Auth0', 'Tailwind']
 developer_tools = ['Github', 'Git', 'AWS', 'Amazon', 'Web', 'Services', 'Azure', 'Docker', 'Atlas', 'Jira', 'Trello', 'VSCode', 'Cron', 'APIs']
 adjectives      = ['collaborate', 'collaborating', 'bug', 'designing', 'testing', 'engineering', 'experiences']
