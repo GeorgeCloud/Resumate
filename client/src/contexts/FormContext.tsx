@@ -6,15 +6,35 @@ interface ContextProps {
   children: React.ReactNode;
 }
 
-interface FormData {
-  page1: string;
-  page2: string;
-  page3: string;
-  page4: string;
+interface PersonalDetailTypes {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  linkedIn: string;
+  github: string;
+  title: string;
 }
 
+interface ProfessionalDetailTypes {
+  title: string;
+  companyName: string;
+  startDate: string;
+  endDate: string;
+  cityState: string;
+}
+
+interface FormData {
+  personalData: PersonalDetailTypes;
+  professionalData: ProfessionalDetailTypes;
+
+}
 interface FormContextProps {
+  personalData: PersonalDetailTypes;
+  professionalData: ProfessionalDetailTypes;
   formData: FormData;
+  setPersonalData: React.Dispatch<React.SetStateAction<PersonalDetailTypes>>;
+  setProfessionalData: React.Dispatch<React.SetStateAction<ProfessionalDetailTypes>>;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   currentPage: number;
   nextPage: (data: Partial<FormData>) => void;
@@ -24,11 +44,28 @@ interface FormContextProps {
 const FormContext = createContext<FormContextProps | undefined>(undefined);
 
 export function FormProvider({ children }: ContextProps) {
-  const [formData, setFormData] = useState<FormData>({
-    page1: '',
-    page2: '',
-    page3: '',
-    page4: ''
+
+  const [personalData, setPersonalData] = useState<PersonalDetailTypes>({
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    email: '',
+    linkedIn: '',
+    github: '',
+    title: ''
+  });
+  const [professionalData, setProfessionalData] = useState<ProfessionalDetailTypes>({
+    title: '',
+    companyName: '',
+    startDate: '',
+    endDate: '',
+    cityState: ''
+  });
+
+
+  const [formData, setFormData] = useState({
+    personalData,
+    professionalData
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -43,6 +80,10 @@ export function FormProvider({ children }: ContextProps) {
 
   return (
     <FormContext.Provider value={{
+      personalData,
+      setPersonalData,
+      professionalData,
+      setProfessionalData,
       formData,
       setFormData,
       currentPage,

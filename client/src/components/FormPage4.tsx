@@ -5,13 +5,13 @@ export default function FormPage4() {
 
   return (
     <div>
-      <h2>Page 2</h2>
+      <h2>Page 4</h2>
       <label>
-        Field on Page 2:
+        Field on Page 4:
         <input
           type="text"
-          value={formData.page2}
-          onChange={(e) => nextPage({ page2: e.target.value })}
+          value={formData.page4}
+          onChange={(e) => nextPage({ page4: e.target.value })}
         />
       </label>
       <button onClick={prevPage}>Previous</button>

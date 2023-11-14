@@ -1,16 +1,29 @@
 import { useFormContext } from '../contexts/FormContext'
 
 export default function SummaryPage() {
-  const { formData, prevPage } = useFormContext();
+  const { personalData, professionalData, prevPage } = useFormContext();
 
   return (
     <div>
-      <h2>Page 4</h2>
-      <p>Review and submit:</p>
-      <p>Page 1: {formData.page1}</p>
-      <p>Page 2: {formData.page2}</p>
-      <p>Page 3: {formData.page3}</p>
-      <p>Page 4: {formData.page4}</p>
+      <h2>Summary Page</h2>
+      <div>Review and submit:</div>
+      <h3>Personal Detail</h3>
+      <div>First Name: {personalData.firstName}</div>
+      <div>Last Name: {personalData.lastName}</div>
+      <div>Phone No.: {personalData.phoneNumber}</div>
+      <div>Email: {personalData.email}</div>
+      <div>LinkedIn: {personalData.linkedIn}</div>
+      <div>Github: {personalData.github}</div>
+      <div>Title: {personalData.title}</div>
+
+
+      <h3>Professional Detail</h3>
+      <div>Title: {professionalData.title}</div>
+      <div>Company Name: {professionalData.companyName}</div>
+      <div>Start Date: {professionalData.startDate}</div>
+      <div>End Date: {professionalData.endDate}</div>
+      <div>City & State: {professionalData.cityState}</div>
+
       <button onClick={prevPage}>Previous</button>
       <button onClick={() => alert('Form submitted!')}>Submit</button>
     </div>
