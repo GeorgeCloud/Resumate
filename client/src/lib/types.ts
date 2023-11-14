@@ -19,6 +19,7 @@ export type EducationDetailTypes = {
   startDate: string;
   endDate: string;
 }
+
 export type ProfessionalDetailTypes = {
   title: string;
   companyName: string;
@@ -27,20 +28,31 @@ export type ProfessionalDetailTypes = {
   cityState: string;
 }
 
+export type ProjectsDetailTypes = {
+  projectTitle: string;
+  url: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+}
+
 export type WholeFormDataTypes = {
   personalData: PersonalDetailTypes;
   educationData: EducationDetailTypes;
   professionalData: ProfessionalDetailTypes;
+  projectsData: ProjectsDetailTypes;
 }
 
 export type WholeFormContextPropsTypes = {
   personalData: PersonalDetailTypes;
   educationData: EducationDetailTypes;
   professionalData: ProfessionalDetailTypes;
+  projectsData: ProjectsDetailTypes;
   wholeFormData: WholeFormDataTypes;
   setPersonalData: React.Dispatch<React.SetStateAction<PersonalDetailTypes>>;
   setEducationData: React.Dispatch<React.SetStateAction<EducationDetailTypes>>;
   setProfessionalData: React.Dispatch<React.SetStateAction<ProfessionalDetailTypes>>;
+  setProjectsData: React.Dispatch<React.SetStateAction<ProjectsDetailTypes>>;
   setWholeFormData: React.Dispatch<React.SetStateAction<WholeFormDataTypes>>;
   currentPage: number;
   nextPage: (data: Partial<WholeFormDataTypes>) => void;

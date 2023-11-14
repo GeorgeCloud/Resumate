@@ -1,7 +1,7 @@
 import { useFormContext } from '../contexts/FormContext'
 
 export default function SummaryPage() {
-  const { personalData, educationData, professionalData, prevPage } = useFormContext();
+  const { personalData, educationData, professionalData, projectsData, prevPage } = useFormContext();
 
   return (
     <div>
@@ -30,6 +30,13 @@ export default function SummaryPage() {
       <div>Start Date: {professionalData.startDate}</div>
       <div>End Date: {professionalData.endDate}</div>
       <div>City & State: {professionalData.cityState}</div>
+
+      <h3>Projects Detail</h3>
+      <div>Project Title: {projectsData.projectTitle}</div>
+      <div>URL: {projectsData.url}</div>
+      <div>Description: {projectsData.description}</div>
+      <div>Start Date: {projectsData.startDate}</div>
+      <div>End Date: {projectsData.endDate}</div>
 
       <button onClick={prevPage}>Previous</button>
       <button onClick={() => alert('Form submitted!')}>Submit</button>

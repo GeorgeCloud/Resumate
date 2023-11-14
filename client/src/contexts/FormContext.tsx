@@ -3,6 +3,7 @@ import type {
   PersonalDetailTypes,
   EducationDetailTypes,
   ProfessionalDetailTypes,
+  ProjectsDetailTypes,
   WholeFormDataTypes,
   WholeFormContextPropsTypes,
   ContextPropsType
@@ -38,11 +39,19 @@ export function FormProvider({ children }: ContextPropsType) {
     cityState: ''
   });
 
+  const [projectsData, setProjectsData] = useState<ProjectsDetailTypes>({
+    projectTitle: '',
+    url: '',
+    description: '',
+    startDate: '',
+    endDate: '',
+  });
 
   const [wholeFormData, setWholeFormData] = useState<WholeFormDataTypes>({
     personalData,
     educationData,
-    professionalData
+    professionalData,
+    projectsData
   });
 
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -64,6 +73,8 @@ export function FormProvider({ children }: ContextPropsType) {
       setEducationData,
       professionalData,
       setProfessionalData,
+      projectsData,
+      setProjectsData,
       wholeFormData,
       setWholeFormData,
       currentPage,
