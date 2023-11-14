@@ -9,6 +9,11 @@ export default function EducationDetail() {
     prevPage
   } = useFormContext();
 
+  function handleNext() {
+    // TODO: handle form validation
+    nextPage(wholeFormData);
+  };
+
   return (
     <div>
       <h2>Education Detail</h2>
@@ -73,7 +78,7 @@ export default function EducationDetail() {
         />
       </label>
 
-      <button onClick={() => nextPage(wholeFormData)}>Continue & Save</button>
+      <button onClick={handleNext}>Continue & Save</button>
       <button onClick={prevPage}>Previous</button>
     </div>
   );

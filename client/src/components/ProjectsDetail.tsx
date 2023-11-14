@@ -2,6 +2,12 @@ import { useFormContext } from '../contexts/FormContext';
 
 export default function projectsData() {
   const { projectsData, setProjectsData, nextPage, prevPage, wholeFormData } = useFormContext();
+
+  function handleNext() {
+    // TODO: handle form validation
+    nextPage(wholeFormData);
+  };
+
   return (
     <div>
       <h2>Projects Detail</h2>
@@ -71,7 +77,7 @@ export default function projectsData() {
         />
       </label>
 
-      <button onClick={() => nextPage(wholeFormData)}>Continue & Save</button>
+      <button onClick={handleNext}>Continue & Save</button>
       <button onClick={prevPage}>Previous</button>
 
     </div>
