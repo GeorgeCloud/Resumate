@@ -1,7 +1,13 @@
 import { useFormContext } from '../contexts/FormContext';
 
 export default function ProfessionalDetail() {
-  const { professionalData, setProfessionalData } = useFormContext();
+  const {
+    professionalData,
+    setProfessionalData,
+    wholeFormData,
+    nextPage,
+    prevPage
+  } = useFormContext();
   return (
     <div>
       <h2>Professional Detail</h2>
@@ -65,7 +71,8 @@ export default function ProfessionalDetail() {
         />
       </label>
 
-      <button>Save & Continue</button>
+      <button onClick={() => nextPage(wholeFormData)}>Continue & Save</button>
+      <button onClick={prevPage}>Previous</button>
     </div>
   );
 }

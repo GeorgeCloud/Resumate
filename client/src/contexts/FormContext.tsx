@@ -1,49 +1,16 @@
-// FormContext.tsx
+import { createContext, useContext, useState } from 'react';
+import type {
+  PersonalDetailTypes,
+  EducationDetailTypes,
+  ProfessionalDetailTypes,
+  WholeFormDataTypes,
+  WholeFormContextPropsTypes,
+  ContextPropsType
+} from '../lib/types';
 
-import React, { createContext, useContext, useState } from 'react';
+const FormContext = createContext<WholeFormContextPropsTypes | undefined>(undefined);
 
-interface ContextProps {
-  children: React.ReactNode;
-}
-
-interface PersonalDetailTypes {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-  linkedIn: string;
-  github: string;
-  title: string;
-}
-
-interface ProfessionalDetailTypes {
-  title: string;
-  companyName: string;
-  startDate: string;
-  endDate: string;
-  cityState: string;
-}
-
-interface FormData {
-  personalData: PersonalDetailTypes;
-  professionalData: ProfessionalDetailTypes;
-
-}
-interface FormContextProps {
-  personalData: PersonalDetailTypes;
-  professionalData: ProfessionalDetailTypes;
-  formData: FormData;
-  setPersonalData: React.Dispatch<React.SetStateAction<PersonalDetailTypes>>;
-  setProfessionalData: React.Dispatch<React.SetStateAction<ProfessionalDetailTypes>>;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-  currentPage: number;
-  nextPage: (data: Partial<FormData>) => void;
-  prevPage: () => void;
-}
-
-const FormContext = createContext<FormContextProps | undefined>(undefined);
-
-export function FormProvider({ children }: ContextProps) {
+export function FormProvider({ children }: ContextPropsType) {
 
   const [personalData, setPersonalData] = useState<PersonalDetailTypes>({
     firstName: '',
@@ -54,6 +21,15 @@ export function FormProvider({ children }: ContextProps) {
     github: '',
     title: ''
   });
+
+  const [educationData, setEducationData] = useState<EducationDetailTypes>({
+    schoolName: '',
+    cityState: '',
+    degreeTitle: '',
+    startDate: '',
+    endDate: ''
+  })
+
   const [professionalData, setProfessionalData] = useState<ProfessionalDetailTypes>({
     title: '',
     companyName: '',
@@ -63,14 +39,16 @@ export function FormProvider({ children }: ContextProps) {
   });
 
 
-  const [formData, setFormData] = useState({
+  const [wholeFormData, setWholeFormData] = useState<WholeFormDataTypes>({
     personalData,
+    educationData,
     professionalData
   });
+
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const nextPage = (data: Partial<FormData>) => {
-    setFormData((prevData) => ({ ...prevData, ...data }));
+  const nextPage = (data: Partial<WholeFormDataTypes>) => {
+    setWholeFormData((prevData) => ({ ...prevData, ...data }));
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
@@ -82,10 +60,12 @@ export function FormProvider({ children }: ContextProps) {
     <FormContext.Provider value={{
       personalData,
       setPersonalData,
+      educationData,
+      setEducationData,
       professionalData,
       setProfessionalData,
-      formData,
-      setFormData,
+      wholeFormData,
+      setWholeFormData,
       currentPage,
       nextPage,
       prevPage

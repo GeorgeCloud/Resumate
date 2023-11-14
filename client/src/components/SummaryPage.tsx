@@ -1,12 +1,13 @@
 import { useFormContext } from '../contexts/FormContext'
 
 export default function SummaryPage() {
-  const { personalData, professionalData, prevPage } = useFormContext();
+  const { personalData, educationData, professionalData, prevPage } = useFormContext();
 
   return (
     <div>
       <h2>Summary Page</h2>
       <div>Review and submit:</div>
+
       <h3>Personal Detail</h3>
       <div>First Name: {personalData.firstName}</div>
       <div>Last Name: {personalData.lastName}</div>
@@ -16,6 +17,12 @@ export default function SummaryPage() {
       <div>Github: {personalData.github}</div>
       <div>Title: {personalData.title}</div>
 
+      <h3>Education Detail</h3>
+      <div>School Name: {educationData.schoolName}</div>
+      <div>City & State: {educationData.cityState}</div>
+      <div>Degree Title: {educationData.degreeTitle}</div>
+      <div>Start Date: {educationData.startDate}</div>
+      <div>End Date: {educationData.endDate}</div>
 
       <h3>Professional Detail</h3>
       <div>Title: {professionalData.title}</div>

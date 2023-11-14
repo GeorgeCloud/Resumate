@@ -1,7 +1,7 @@
 import { FormProvider } from '../contexts/FormContext'
 import PersonalDetail from './PersonalDetail'
 import ProfessionalDetail from './ProfessionalDetail'
-import FormPage3 from './FormPage3'
+import EducationDetail from './EducationDetail'
 import FormPage4 from './FormPage4'
 import SummaryPage from './SummaryPage';
 
@@ -10,8 +10,8 @@ export default function MultiPageForm() {
     <FormProvider>
       <div>
         <PersonalDetail />
+        <EducationDetail />
         <ProfessionalDetail />
-        <FormPage3 />
         <FormPage4 />
         <SummaryPage />
       </div>
