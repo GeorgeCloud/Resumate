@@ -1,13 +1,7 @@
 import { useFormContext } from '../contexts/FormContext';
 
 export default function PersonalDetail() {
-  const { personalData, setPersonalData, wholeFormData, nextPage, prevPage } = useFormContext();
-
-  function handleNext() {
-    // TODO: handle form validation
-    nextPage(wholeFormData);
-  };
-
+  const { personalData, setPersonalData } = useFormContext();
   return (
     <div>
       <h2>Personal Detail</h2>
@@ -108,10 +102,6 @@ export default function PersonalDetail() {
           )}
         />
       </label>
-
-      <button onClick={handleNext}>Continue & Save</button>
-      <button onClick={prevPage}>Previous</button>
-
     </div>
   )
 }

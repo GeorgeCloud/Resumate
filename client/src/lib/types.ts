@@ -55,6 +55,7 @@ export type WholeFormContextPropsTypes = {
   setProjectsData: React.Dispatch<React.SetStateAction<ProjectsDetailTypes>>;
   setWholeFormData: React.Dispatch<React.SetStateAction<WholeFormDataTypes>>;
   currentPage: number;
+  pages: string[];
   nextPage: (data: Partial<WholeFormDataTypes>) => void;
   prevPage: () => void;
 }

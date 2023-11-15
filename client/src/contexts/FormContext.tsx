@@ -55,11 +55,18 @@ export function FormProvider({ children }: ContextPropsType) {
   });
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = 5;
+
+  const pages: string[] = [
+    'Personal',
+    'Education',
+    'Professional',
+    'Projects',
+    'Summary'
+  ]
 
   const nextPage = (data: Partial<WholeFormDataTypes>) => {
     setWholeFormData((prevData) => ({ ...prevData, ...data }));
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, pages.length));
   };
 
   const prevPage = () => {
@@ -80,7 +87,8 @@ export function FormProvider({ children }: ContextPropsType) {
       setWholeFormData,
       currentPage,
       nextPage,
-      prevPage
+      prevPage,
+      pages
     }}>
       {children}
     </FormContext.Provider>

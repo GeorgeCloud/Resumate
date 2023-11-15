@@ -4,15 +4,7 @@ export default function EducationDetail() {
   const {
     educationData,
     setEducationData,
-    wholeFormData,
-    nextPage,
-    prevPage
   } = useFormContext();
-
-  function handleNext() {
-    // TODO: handle form validation
-    nextPage(wholeFormData);
-  };
 
   return (
     <div>
@@ -53,7 +45,6 @@ export default function EducationDetail() {
         />
       </label>
 
-
       <label>
         Start Date:
         <input
@@ -77,9 +68,6 @@ export default function EducationDetail() {
           })}
         />
       </label>
-
-      <button onClick={handleNext}>Continue & Save</button>
-      <button onClick={prevPage}>Previous</button>
     </div>
   );
 }

@@ -4,15 +4,7 @@ export default function ProfessionalDetail() {
   const {
     professionalData,
     setProfessionalData,
-    wholeFormData,
-    nextPage,
-    prevPage
   } = useFormContext();
-
-  function handleNext() {
-    // TODO: handle form validation
-    nextPage(wholeFormData);
-  };
 
   return (
     <div>
@@ -76,9 +68,6 @@ export default function ProfessionalDetail() {
           })}
         />
       </label>
-
-      <button onClick={handleNext}>Continue & Save</button>
-      <button onClick={prevPage}>Previous</button>
     </div>
   );
 }
