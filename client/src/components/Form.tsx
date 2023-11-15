@@ -1,39 +1,71 @@
-import { useParams, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext';
-import PersonalDetail from './PersonalDetail';
-import EducationDetail from './EducationDetail';
-import ProfessionalDetail from './ProfessionalDetail';
-import ProjectsDetail from './ProfessionalDetail';
+import Personal from '../routes/multiPageForm/Personal';
+import Education from '../routes/multiPageForm/Education';
+import Professional from '../routes/multiPageForm/Professional';
+import Projects from '../routes/multiPageForm/Professional';
+import Summary from '../routes/multiPageForm/Summary';
+import type { PageTypes } from '../lib/types';
 
-import FormPage from './FormPage';
+const pages: PageTypes[] = [
+  {
+    id: 1,
+    name: 'personal',
+    component: <Personal />
+  },
+  {
+    id: 2,
+    name: 'education',
+    component: <Education />
+  },
+  {
+    id: 3,
+    name: 'professional',
+    component: <Professional />
+  },
+  {
+    id: 4,
+    name: 'projects',
+    component: <Projects />
+  },
+  {
+    id: 5,
+    name: 'summary',
+    component: <Summary />
+  }
+];
 
 export default function Form() {
-  const { page } = useParams();
+  const navigate = useNavigate();
+  const { currentPage, formData, nextPage, prevPage } = useFormContext();
 
-  const { currentPage } = useFormContext();
+  const nextPageObj = pages.find((p) => p.id === currentPage);
 
-  function getPageComponent() {
-    switch (page) {
-      case 'personal':
-        return <PersonalDetail />;
-      case 'education':
-        return <EducationDetail />;
-      case 'professional':
-        return <ProfessionalDetail />;
-      case 'projects':
-        return <ProjectsDetail />;
-      default:
-        // redirect to landing page if route not recognized
-        return <Navigate to="/" />;
+  function handleNext() {
+    nextPage(formData);
+
+    if (nextPageObj) {
+      return navigate(`/form/${nextPageObj.name}`);
     }
-  };
+  }
+
+  function handlePrev() {
+    prevPage();
+  }
 
   return (
     <>
-      <div>This is a Multi-Page Form</div>
-      <p>{`Page ${currentPage} of 5`}</p>
-      {getPageComponent()}
-      <FormPage />
+      {nextPageObj?.component}
+      <div>
+        {currentPage !== 1 && (
+          <button onClick={handlePrev}>Previous</button>
+        )}
+        {currentPage !== 5 && (
+          <button onClick={handleNext}>Next & Save</button>
+        )}
+        <div>This is a Multi-Page Form</div>
+        <p>{`Page ${currentPage} of 5`}</p>
+      </div>
     </>
-  )
+  );
 }

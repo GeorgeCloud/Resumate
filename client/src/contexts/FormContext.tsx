@@ -1,72 +1,52 @@
 import { createContext, useContext, useState } from 'react';
 import type {
-  PersonalDetailTypes,
-  EducationDetailTypes,
-  ProfessionalDetailTypes,
-  ProjectsDetailTypes,
-  WholeFormDataTypes,
-  WholeFormContextPropsTypes,
+  FormDataTypes,
+  FormContextPropsTypes,
   ContextPropsType
 } from '../lib/types';
 
-const FormContext = createContext<WholeFormContextPropsTypes | undefined>(undefined);
+const FormContext = createContext<FormContextPropsTypes | undefined>(undefined);
 
 export function FormProvider({ children }: ContextPropsType) {
-
-  const [personalData, setPersonalData] = useState<PersonalDetailTypes>({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
-    linkedIn: '',
-    github: '',
-    title: ''
-  });
-
-  const [educationData, setEducationData] = useState<EducationDetailTypes>({
-    schoolName: '',
-    cityState: '',
-    degreeTitle: '',
-    startDate: '',
-    endDate: ''
-  })
-
-  const [professionalData, setProfessionalData] = useState<ProfessionalDetailTypes>({
-    title: '',
-    companyName: '',
-    startDate: '',
-    endDate: '',
-    cityState: ''
-  });
-
-  const [projectsData, setProjectsData] = useState<ProjectsDetailTypes>({
-    projectTitle: '',
-    url: '',
-    description: '',
-    startDate: '',
-    endDate: '',
-  });
-
-  const [wholeFormData, setWholeFormData] = useState<WholeFormDataTypes>({
-    personalData,
-    educationData,
-    professionalData,
-    projectsData
+  const [formData, setFormData] = useState<FormDataTypes>({
+    personalData: {
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      email: '',
+      linkedIn: '',
+      github: '',
+      title: ''
+    },
+    educationData: {
+      schoolName: '',
+      cityState: '',
+      degreeTitle: '',
+      startDate: '',
+      endDate: ''
+    },
+    professionalData: {
+      title: '',
+      companyName: '',
+      startDate: '',
+      endDate: '',
+      cityState: ''
+    },
+    projectsData: {
+      projectTitle: '',
+      url: '',
+      description: '',
+      startDate: '',
+      endDate: ''
+    }
   });
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const pages: string[] = [
-    'Personal',
-    'Education',
-    'Professional',
-    'Projects',
-    'Summary'
-  ]
 
-  const nextPage = (data: Partial<WholeFormDataTypes>) => {
-    setWholeFormData((prevData) => ({ ...prevData, ...data }));
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, pages.length));
+  const nextPage = (data: Partial<FormDataTypes>) => {
+    setFormData((prevData) => ({ ...prevData, ...data }));
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, 5));
   };
 
   const prevPage = () => {
@@ -75,20 +55,11 @@ export function FormProvider({ children }: ContextPropsType) {
 
   return (
     <FormContext.Provider value={{
-      personalData,
-      setPersonalData,
-      educationData,
-      setEducationData,
-      professionalData,
-      setProfessionalData,
-      projectsData,
-      setProjectsData,
-      wholeFormData,
-      setWholeFormData,
+      formData,
+      setFormData,
       currentPage,
       nextPage,
-      prevPage,
-      pages
+      prevPage
     }}>
       {children}
     </FormContext.Provider>

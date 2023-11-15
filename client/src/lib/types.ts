@@ -1,3 +1,13 @@
+export type PageTypes = {
+  id: number;
+  name: string;
+  component: {};
+}
+
+export type PageComponentProps = {
+  handleInputChange: (field: string, value: string) => void;
+}
+
 export type ContextPropsType = {
   children: React.ReactNode;
 }
@@ -36,26 +46,17 @@ export type ProjectsDetailTypes = {
   endDate: string;
 }
 
-export type WholeFormDataTypes = {
+export type FormDataTypes = {
   personalData: PersonalDetailTypes;
   educationData: EducationDetailTypes;
   professionalData: ProfessionalDetailTypes;
   projectsData: ProjectsDetailTypes;
 }
 
-export type WholeFormContextPropsTypes = {
-  personalData: PersonalDetailTypes;
-  educationData: EducationDetailTypes;
-  professionalData: ProfessionalDetailTypes;
-  projectsData: ProjectsDetailTypes;
-  wholeFormData: WholeFormDataTypes;
-  setPersonalData: React.Dispatch<React.SetStateAction<PersonalDetailTypes>>;
-  setEducationData: React.Dispatch<React.SetStateAction<EducationDetailTypes>>;
-  setProfessionalData: React.Dispatch<React.SetStateAction<ProfessionalDetailTypes>>;
-  setProjectsData: React.Dispatch<React.SetStateAction<ProjectsDetailTypes>>;
-  setWholeFormData: React.Dispatch<React.SetStateAction<WholeFormDataTypes>>;
+export type FormContextPropsTypes = {
+  formData: FormDataTypes;
+  setFormData: React.Dispatch<React.SetStateAction<FormDataTypes>>;
   currentPage: number;
-  pages: string[];
-  nextPage: (data: Partial<WholeFormDataTypes>) => void;
+  nextPage: (data: Partial<FormDataTypes>) => void;
   prevPage: () => void;
 }
