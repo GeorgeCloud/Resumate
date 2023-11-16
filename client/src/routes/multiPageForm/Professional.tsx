@@ -9,62 +9,110 @@ export default function Professional() {
   function handleInputChange(field: string, value: string) {
     setFormData({
       ...formData,
-      personalData: {
-        ...formData.personalData,
+      professionalData: {
+        ...formData.professionalData,
         [field]: value,
       }
     })
   }
 
   return (
-    <div className="max-w-lg w-3/4 mx-auto">
-      <div className="w-full mx-auto flex flex-col">
-        <h2 className="text-2xl/3 my-4">Professional Detail</h2>
-        <label className='w-full flex justify-between my-4 py-2 px-4'>
-          Title
+    <div className="page">
+      <h2 className="font-normal underline underline-offset-1 decoration-1 text-xl">Professional Detail</h2>
+
+      <div className="row">
+        <div className="col1">
+          <label htmlFor="title" className="flex justify-between">
+            Title
+          </label>
+        </div>
+        <div className="col2">
           <input
             type="text"
             className="rounded-md"
+            id="title"
+            name="title"
+            placeholder="Title"
             value={formData.professionalData.title}
             onChange={(e) => handleInputChange('title', e.target.value)}
           />
-        </label>
+        </div>
+      </div>
 
-        <label className='w-full flex justify-between my-4 py-2 px-4'>
-          Company Name
+      <div className="row">
+        <div className="col1">
+          <label htmlFor="companyName" className="flex justify-between">
+            Company Name
+          </label>
+        </div>
+        <div className="col2">
           <input
-            type="url"
+            type="text"
+            className="rounded-md"
+            id="companyName"
+            name="companyName"
+            placeholder="Company Name"
             value={formData.professionalData.companyName}
             onChange={(e) => handleInputChange('companyName', e.target.value)}
           />
-        </label>
+        </div>
+      </div>
 
-        <label className='w-full flex justify-between my-4 py-2 px-4'>
-          Start Date
+      <div className="row">
+        <div className="col1">
+          <label htmlFor="startDate" className="flex justify-between">
+            Start Date
+          </label>
+        </div>
+        <div className="col2">
           <input
             type="text"
+            className="rounded-md"
+            id="startDate"
+            name="startDate"
+            placeholder="Start Date"
             value={formData.professionalData.startDate}
             onChange={(e) => handleInputChange('startDate', e.target.value)}
           />
-        </label>
+        </div>
+      </div>
 
-        <label className='w-full flex justify-between my-4 py-2 px-4'>
-          End Date
+      <div className="row">
+        <div className="col1">
+          <label htmlFor="endDate" className="flex justify-between">
+            End Date
+          </label>
+        </div>
+        <div className="col2">
           <input
             type="text"
+            className="rounded-md"
+            id="endDate"
+            name="endDate"
+            placeholder="End Date"
             value={formData.professionalData.endDate}
             onChange={(e) => handleInputChange('endDate', e.target.value)}
           />
-        </label>
+        </div>
+      </div>
 
-        <label className='w-full flex justify-between my-4 py-2 px-4'>
-          City & State
+      <div className="row">
+        <div className="col1">
+          <label htmlFor="cityState" className="flex justify-between">
+            City & State
+          </label>
+        </div>
+        <div className="col2">
           <input
             type="text"
+            className="rounded-md"
+            id="cityState"
+            name="cityState"
+            placeholder="City & State"
             value={formData.professionalData.cityState}
             onChange={(e) => handleInputChange('cityState', e.target.value)}
           />
-        </label>
+        </div>
       </div>
 
     </div>

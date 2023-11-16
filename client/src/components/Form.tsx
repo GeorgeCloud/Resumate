@@ -3,7 +3,7 @@ import { useFormContext } from '../contexts/FormContext';
 import Personal from '../routes/multiPageForm/Personal';
 import Education from '../routes/multiPageForm/Education';
 import Professional from '../routes/multiPageForm/Professional';
-import Projects from '../routes/multiPageForm/Professional';
+import Projects from '../routes/multiPageForm/Projects';
 import Summary from '../routes/multiPageForm/Summary';
 import type { PageTypes } from '../lib/types';
 
@@ -39,13 +39,13 @@ export default function Form() {
   const navigate = useNavigate();
   const { currentPage, formData, nextPage, prevPage } = useFormContext();
 
-  const nextPageObj = pages.find((p) => p.id === currentPage);
+  const currentPageObj = pages.find((p) => p.id === currentPage);
 
   function handleNext() {
-    nextPage(formData);
-
+    const nextPageObj = pages.find((p) => p.id === currentPage + 1);
     if (nextPageObj) {
-      return navigate(`/form/${nextPageObj.name}`);
+      navigate(`/form/${nextPageObj.name}`);
+      nextPage(formData);
     }
   }
 
@@ -54,18 +54,28 @@ export default function Form() {
   }
 
   return (
-    <>
-      {nextPageObj?.component}
-      <div>
-        {currentPage !== 1 && (
-          <button onClick={handlePrev}>Previous</button>
-        )}
-        {currentPage !== 5 && (
-          <button onClick={handleNext}>Next & Save</button>
-        )}
-        <div>This is a Multi-Page Form</div>
-        <p>{`Page ${currentPage} of 5`}</p>
+    <div>
+
+      <div className="container">
+        <form action="#">
+          {currentPageObj?.component}
+        </form>
       </div>
-    </>
+
+      <div>
+
+        <div className="m-2">
+          {currentPage !== 1 && (
+            <button onClick={handlePrev}>Previous</button>
+          )}
+          {currentPage !== 5 && (
+            <button onClick={handleNext}>Next & Save</button>
+          )}
+        </div>
+
+        <div>{`Page ${currentPage} of 5`}</div>
+
+      </div>
+    </div>
   );
 }
