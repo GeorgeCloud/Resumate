@@ -62,7 +62,7 @@ export default function Form() {
       }
     }
   }
-  
+
   return (
     <div>
       <div className="container">
@@ -71,8 +71,8 @@ export default function Form() {
         </form>
       </div>
       <div>
-        <button onClick={handlePrev}>Previous</button>
-        <button onClick={handleNext}>Next</button>
+        <button className="m-2" onClick={handlePrev}>Previous</button>
+        <button className="m-2" onClick={handleNext}>Next</button>
       </div>
     </div>
   );
