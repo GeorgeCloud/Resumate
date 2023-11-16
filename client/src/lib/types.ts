@@ -1,8 +1,9 @@
-export type PageTypes = {
-    id: number;
-    name: string;
-    component: React.ReactNode;
-}
+
+export type PageType = {
+  id: number;
+  name: string;
+  component: JSX.Element;
+};
 
 export type PageComponentProps = {
   handleInputChange: (field: string, value: string) => void;
@@ -12,7 +13,7 @@ export type ContextPropsType = {
   children: React.ReactNode;
 }
 
-export type FormDataTypes = {
+export type FormDataType = {
   personalData: {
     firstName: string;
     lastName: string;
@@ -36,19 +37,19 @@ export type FormDataTypes = {
     endDate: string;
     cityState: string;
   },
-projectsData: {
-  projectTitle: string;
-  url: string;
-  description: string;
-  startDate: string;
-  endDate: string;
+  projectsData: {
+    projectTitle: string;
+    url: string;
+    description: string;
+    startDate: string;
+    endDate: string;
   }
 }
 
 export type FormContextPropsTypes = {
-  formData: FormDataTypes;
-  setFormData: React.Dispatch<React.SetStateAction<FormDataTypes>>;
+  formData: FormDataType;
+  setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
   currentPage: number;
-  nextPage: (data: Partial<FormDataTypes>) => void;
+  nextPage: (data: Partial<FormDataType>) => void;
   prevPage: () => void;
 }
