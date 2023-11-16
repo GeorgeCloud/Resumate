@@ -120,7 +120,15 @@ label {
 .container {
   width: 30rem;
   height: 33rem;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
+  background-color: var(--misty-rose);
+}
+
+.page {
+  color: var(--jet);
+  width: 28rem;
+  height: 30rem;
+  border-radius: 0.3rem;
   background-color: var(--misty-rose);
 }
 

@@ -17,7 +17,7 @@ export default function Personal() {
   }
 
   return (
-    <div className="container">
+    <div className="page">
       <h2 className="font-normal underline underline-offset-1 decoration-1 text-xl">Personal Detail</h2>
 
       <div className="row">
