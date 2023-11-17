@@ -11,7 +11,7 @@ export default function Personal() {
       ...formData,
       personalData: {
         ...formData.personalData,
-        [field]: value,
+        [field]: value
       },
     });
   }
