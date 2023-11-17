@@ -16,12 +16,12 @@ const pages: PageType[] = [
   },
   {
     id: 2,
-    name: 'contact',
+    name: 'education',
     component: <Education />
   },
   {
     id: 3,
-    name: 'address',
+    name: 'professional',
     component: <Professional />
   },
   {
@@ -44,6 +44,7 @@ export default function Form() {
   const currentPageObj = pages.find((p) => p.name === page);
 
   function handleNext() {
+    console.log('form data', formData);
     if (currentPageObj) {
       const nextPageObj = pages.find((p) => p.id === currentPageObj?.id + 1);
       if (nextPageObj) {
@@ -64,15 +65,15 @@ export default function Form() {
   }
 
   return (
-    <div>
-      <div className="container">
+    <div className="w-screen max-h-screen">
+      <div className="max-w-lg mx-auto flex justify-center">
         <form action="#">
           {currentPageObj?.component}
         </form>
       </div>
-      <div>
-        <button className="m-2" onClick={handlePrev}>Previous</button>
-        <button className="m-2" onClick={handleNext}>Next</button>
+      <div className="max-w-lg mx-auto flex justify-center">
+        <button className="mx-2 mb-4" onClick={handlePrev}>Previous</button>
+        <button className="mx-2 mb-4" onClick={handleNext}>Next</button>
       </div>
     </div>
   );

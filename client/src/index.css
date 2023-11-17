@@ -7,7 +7,6 @@
 }
 
 :root {
-
   --white: #ffffff;
   --lavender-web: #e8eaf8;
   --misty-rose: #fae2e0;
@@ -64,13 +63,6 @@ body {
   min-height: 100vh;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -115,21 +107,6 @@ label {
   padding: 0.75rem 0.75rem 0.75rem 0;
   display: inline-block;
   color: var(--dim-gray);
-}
-
-.container {
-  width: 30rem;
-  height: 33rem;
-  border-radius: 0.3rem;
-  background-color: var(--misty-rose);
-}
-
-.page {
-  color: var(--jet);
-  width: 28rem;
-  height: 30rem;
-  border-radius: 0.3rem;
-  background-color: var(--misty-rose);
 }
 
 .col1 {

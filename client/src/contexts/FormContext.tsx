@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import type {
-  FormDataTypes,
+  FormDataType,
   FormContextPropsTypes,
   ContextPropsType
 } from '../lib/types';
@@ -8,7 +8,7 @@ import type {
 const FormContext = createContext<FormContextPropsTypes | undefined>(undefined);
 
 export function FormProvider({ children }: ContextPropsType) {
-  const [formData, setFormData] = useState<FormDataTypes>({
+  const [formData, setFormData] = useState<FormDataType>({
     personalData: {
       firstName: '',
       lastName: '',
@@ -44,7 +44,7 @@ export function FormProvider({ children }: ContextPropsType) {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
 
-  const nextPage = (data: Partial<FormDataTypes>) => {
+  const nextPage = (data: Partial<FormDataType>) => {
     setFormData((prevData) => ({ ...prevData, ...data }));
     setCurrentPage((prevPage) => Math.min(prevPage + 1, 5));
   };
