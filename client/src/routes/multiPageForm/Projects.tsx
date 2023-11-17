@@ -21,7 +21,7 @@ export default function Projects() {
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Projects Detail</h2>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="projectTitle" className="flex justify-between">
             Project Title
           </label>
@@ -39,7 +39,7 @@ export default function Projects() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="url" className="flex justify-between">
             URL
           </label>
@@ -57,7 +57,7 @@ export default function Projects() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="description" className="flex justify-between">
             Description
           </label>
@@ -75,7 +75,7 @@ export default function Projects() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="startDate" className="flex justify-between">
             Start Date
           </label>
@@ -93,7 +93,7 @@ export default function Projects() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="endDate" className="flex justify-between">
             End Date
           </label>

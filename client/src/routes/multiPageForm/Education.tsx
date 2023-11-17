@@ -21,7 +21,7 @@ export default function Education() {
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Education Detail</h2>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="schoolName">
             School Name
           </label>
@@ -39,7 +39,7 @@ export default function Education() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="cityState" className="flex justify-between text-sm/4 ml-2">
             City & State
           </label>
@@ -57,7 +57,7 @@ export default function Education() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="degreeTitle" className="flex justify-between text-sm/4 ml-2">
             Degree Title
           </label>
@@ -75,7 +75,7 @@ export default function Education() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="startDate" className="flex justify-between text-sm/4 ml-2">
             Start Date
           </label>
@@ -93,7 +93,7 @@ export default function Education() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="endDate" className="flex justify-between text-sm/4 ml-2">
             End Date
           </label>

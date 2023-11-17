@@ -17,11 +17,11 @@ export default function Personal() {
   }
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-6 m-8">
+    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Personal Detail</h2>
 
-      <div className="row mb-4">
-        <div className="col1 px-8">
+      <div className="row mb-2">
+        <div className="col1 px-6">
           <label htmlFor="firstName">
             First Name
           </label>
@@ -39,7 +39,7 @@ export default function Personal() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="lastName">
             Last Name
           </label>
@@ -57,7 +57,7 @@ export default function Personal() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="phoneNumber">
             Phone No.
           </label>
@@ -75,7 +75,7 @@ export default function Personal() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="email">
             Email Address
           </label>
@@ -93,7 +93,7 @@ export default function Personal() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="linkedIn">
             LinkedIn Username
           </label>
@@ -111,7 +111,7 @@ export default function Personal() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="github">
             Github Username
           </label>
@@ -129,7 +129,7 @@ export default function Personal() {
       </div>
 
       <div className="row mb-4">
-        <div className="col1 px-8">
+        <div className="col1 px-6">
           <label htmlFor="title">
             Title
           </label>
