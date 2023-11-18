@@ -81,8 +81,12 @@ export default function MultiPageForm() {
         </form>
       </div>
       <div className="max-w-lg mx-auto flex justify-center">
-        <button className="mx-2 mb-4" onClick={handlePrev}>Previous</button>
-        <button className="mx-2 mb-4" onClick={handleNext}>Next</button>
+        <div className="max-w-lg mx-auto flex justify-center">
+          {currentPageObj?.id !== 1 && (
+            <button className="mx-2 mb-4" onClick={handlePrev}>Previous</button>
+          )}
+          <button className="mx-2 mb-4" onClick={handleNext}>Next</button>
+        </div>
       </div>
     </div>
   );

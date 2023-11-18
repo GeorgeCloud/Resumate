@@ -45,7 +45,11 @@ export function FormProvider({ children }: ContextPropsType) {
 
 
   const nextPage = (data: Partial<FormDataType>) => {
-    setFormData((prevData) => ({ ...prevData, ...data }));
+    setFormData((prevData) => {
+      const updatedData = { ...prevData, ...data };
+      localStorage.setItem('formData', JSON.stringify(updatedData));
+      return updatedData;
+    });
     setCurrentPage((prevPage) => Math.min(prevPage + 1, 5));
   };
 

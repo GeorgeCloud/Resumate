@@ -1,7 +1,22 @@
+import { useEffect } from 'react'
 import { useFormContext } from '../contexts/FormContext'
 
 export default function SummaryPage() {
-  const { formData } = useFormContext();
+  const {
+    formData,
+    setFormData
+  } = useFormContext();
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('formData');
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, []);
+
+  if (!formData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="border-neutral-600 border-2 rounded-md shadow-md p-6 m-8">
