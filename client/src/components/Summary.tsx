@@ -1,4 +1,4 @@
-import { useFormContext } from '../../contexts/FormContext'
+import { useFormContext } from '../contexts/FormContext'
 
 export default function SummaryPage() {
   const { formData } = useFormContext();

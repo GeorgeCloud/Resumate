@@ -5,6 +5,10 @@ export type PageType = {
   component: JSX.Element;
 };
 
+export type PagePropsType = {
+  handleInputChange: (field: string, value: string) => void;
+}
+
 export type PageComponentProps = {
   handleInputChange: (field: string, value: string) => void;
 }

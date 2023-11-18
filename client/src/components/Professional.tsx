@@ -1,20 +1,10 @@
-import { useFormContext } from "../../contexts/FormContext";
+import { useFormContext } from "../contexts/FormContext";
+import { PagePropsType } from "../lib/types";
 
-export default function Professional() {
+export default function Professional({ handleInputChange }: PagePropsType) {
   const {
-    formData,
-    setFormData
+    formData
   } = useFormContext();
-
-  function handleInputChange(field: string, value: string) {
-    setFormData({
-      ...formData,
-      professionalData: {
-        ...formData.professionalData,
-        [field]: value
-      }
-    })
-  }
 
   return (
     <div className="border-neutral-600 border-2 rounded-md shadow-md p-6 m-8">

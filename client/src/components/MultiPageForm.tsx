@@ -1,45 +1,54 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext';
-import Personal from '../routes/multiPageForm/Personal';
-import Education from '../routes/multiPageForm/Education';
-import Professional from '../routes/multiPageForm/Professional';
-import Projects from '../routes/multiPageForm/Projects';
-import Summary from '../routes/multiPageForm/Summary';
+import Personal from './Personal';
+import Education from './Education';
+import Professional from './Professional';
+import Projects from './Projects';
+import Summary from './Summary';
 import type { PageType, FormDataType } from '../lib/types'
 
-
-const pages: PageType[] = [
-  {
-    id: 1,
-    name: 'personal',
-    component: <Personal />
-  },
-  {
-    id: 2,
-    name: 'education',
-    component: <Education />
-  },
-  {
-    id: 3,
-    name: 'professional',
-    component: <Professional />
-  },
-  {
-    id: 4,
-    name: 'projects',
-    component: <Projects />
-  },
-  {
-    id: 5,
-    name: 'summary',
-    component: <Summary />
-  }
-];
-
-export default function Form() {
+export default function MultiPageForm() {
   const navigate = useNavigate();
   const { page } = useParams();
-  const { formData, nextPage, prevPage } = useFormContext();
+  const { formData, setFormData, nextPage, prevPage } = useFormContext();
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData({
+      ...formData,
+      personalData: {
+        ...formData.personalData,
+        [field]: value
+      },
+    });
+  }
+
+  const pages: PageType[] = [
+    {
+      id: 1,
+      name: 'personal',
+      component: <Personal handleInputChange={handleInputChange} />
+    },
+    {
+      id: 2,
+      name: 'education',
+      component: <Education handleInputChange={handleInputChange} />
+    },
+    {
+      id: 3,
+      name: 'professional',
+      component: <Professional handleInputChange={handleInputChange} />
+    },
+    {
+      id: 4,
+      name: 'projects',
+      component: <Projects handleInputChange={handleInputChange} />
+    },
+    {
+      id: 5,
+      name: 'summary',
+      component: <Summary />
+    }
+  ];
 
   const currentPageObj = pages.find((p) => p.name === page);
 
