@@ -5,6 +5,10 @@ export type PageType = {
   component: JSX.Element;
 };
 
+// export type PagePropsType = {
+//   handleInputChange: (field: string, value: string) => void;
+// }
+
 export type PageComponentProps = {
   handleInputChange: (field: string, value: string) => void;
 }
@@ -52,4 +56,15 @@ export type FormContextPropsTypes = {
   currentPage: number;
   nextPage: (data: Partial<FormDataType>) => void;
   prevPage: () => void;
+}
+
+export type ApplicationIntakePropTypes = {
+  storageKey: string;
+}
+export interface LocalStorageButtonProps {
+  handleSaveClick: () => void;
+}
+
+export interface SaveButtonProps {
+  formData: FormDataType;
 }
