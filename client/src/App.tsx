@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
-import MultiPageForm from './components/MultiPageForm'
+import MultiPageForm from './components/multipageform/MultiPageForm'
 import Intake from './components/intake/Intake'
 
 export default function App() {

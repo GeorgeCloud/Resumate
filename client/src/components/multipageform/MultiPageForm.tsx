@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useFormContext } from '../contexts/FormContext';
+import { useFormContext } from '../../contexts/FormContext';
 import SaveFormButton from './SaveFormButton';
 import Personal from './Personal';
 import Education from './Education';
 import Professional from './Professional';
 import Projects from './Projects';
 import Summary from './Summary';
-import type { PageType, FormDataType } from '../lib/types'
+import type { PageType, FormDataType } from '../../lib/types'
 
 export default function MultiPageForm() {
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ export default function MultiPageForm() {
           {currentPageObj?.name !== 'summary' ? (
             <button className="mx-2 mb-4" onClick={handleNext}>Next</button>
           ) : (
-              <SaveFormButton formData={formData} />
+            <SaveFormButton formData={formData} />
           )}
 
         </div>

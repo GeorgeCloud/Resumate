@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import type { SaveButtonProps } from "../lib/types";
+import type { SaveButtonProps } from "../../lib/types";
 
 export default function SaveFormButton({ formData }: SaveButtonProps) {
   const navigate = useNavigate();
