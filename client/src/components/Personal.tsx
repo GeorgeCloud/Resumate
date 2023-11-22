@@ -30,7 +30,7 @@ export default function Personal({ handleInputChange }: PagePropsType) {
         </div>
       </div>
 
-      <div className="row mb-4">
+      <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="lastName">
             Last Name
@@ -48,7 +48,7 @@ export default function Personal({ handleInputChange }: PagePropsType) {
         </div>
       </div>
 
-      <div className="row mb-4">
+      <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="phoneNumber">
             Phone No.
@@ -66,7 +66,7 @@ export default function Personal({ handleInputChange }: PagePropsType) {
         </div>
       </div>
 
-      <div className="row mb-4">
+      <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="email">
             Email Address
@@ -84,7 +84,7 @@ export default function Personal({ handleInputChange }: PagePropsType) {
         </div>
       </div>
 
-      <div className="row mb-4">
+      <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="linkedIn">
             LinkedIn Username
@@ -102,7 +102,7 @@ export default function Personal({ handleInputChange }: PagePropsType) {
         </div>
       </div>
 
-      <div className="row mb-4">
+      <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="github">
             Github Username
@@ -120,7 +120,7 @@ export default function Personal({ handleInputChange }: PagePropsType) {
         </div>
       </div>
 
-      <div className="row mb-4">
+      <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="title">
             Title

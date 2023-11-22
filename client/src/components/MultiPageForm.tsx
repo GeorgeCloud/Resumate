@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormContext } from '../contexts/FormContext';
+import SaveFormButton from './SaveFormButton';
 import Personal from './Personal';
 import Education from './Education';
 import Professional from './Professional';
@@ -12,6 +13,7 @@ export default function MultiPageForm() {
   const { page } = useParams();
   const { formData, setFormData, nextPage, prevPage } = useFormContext();
 
+
   const handleInputChange = (field: string, value: string) => {
     setFormData({
       ...formData,
@@ -20,6 +22,27 @@ export default function MultiPageForm() {
         [field]: value
       },
     });
+  }
+
+  function handleNext() {
+    console.log('form data', formData);
+    if (currentPageObj) {
+      const nextPageObj = pages.find((p) => p.id === currentPageObj?.id + 1);
+      if (nextPageObj) {
+        navigate(`/form/${nextPageObj.name}`);
+        nextPage(formData as FormDataType);
+      }
+    }
+  }
+
+  function handlePrev() {
+    if (currentPageObj) {
+      const prevPageObj = pages.find((p) => p.id === currentPageObj?.id - 1);
+      if (prevPageObj) {
+        navigate(`/form/${prevPageObj.name}`);
+        prevPage();
+      }
+    }
   }
 
   const pages: PageType[] = [
@@ -52,30 +75,15 @@ export default function MultiPageForm() {
 
   const currentPageObj = pages.find((p) => p.name === page);
 
-  function handleNext() {
-    console.log('form data', formData);
-    if (currentPageObj) {
-      const nextPageObj = pages.find((p) => p.id === currentPageObj?.id + 1);
-      if (nextPageObj) {
-        navigate(`/form/${nextPageObj.name}`);
-        nextPage(formData as FormDataType);
-      }
-    }
-  }
-
-  function handlePrev() {
-    if (currentPageObj) {
-      const prevPageObj = pages.find((p) => p.id === currentPageObj?.id - 1);
-      if (prevPageObj) {
-        navigate(`/form/${prevPageObj.name}`);
-        prevPage();
-      }
-    }
-  }
-
   return (
     <div className="w-screen max-h-screen">
-      <div className="max-w-lg mx-auto flex justify-center">
+      <div
+        style={{
+          height: '42rem',
+          overflowY: 'auto',
+        }}
+        className="max-w-xl mx-auto flex justify-center"
+      >
         <form action="#">
           {currentPageObj?.component}
         </form>
@@ -85,7 +93,12 @@ export default function MultiPageForm() {
           {currentPageObj?.id !== 1 && (
             <button className="mx-2 mb-4" onClick={handlePrev}>Previous</button>
           )}
-          <button className="mx-2 mb-4" onClick={handleNext}>Next</button>
+          {currentPageObj?.name !== 'summary' ? (
+            <button className="mx-2 mb-4" onClick={handleNext}>Next</button>
+          ) : (
+              <SaveFormButton formData={formData} />
+          )}
+
         </div>
       </div>
     </div>

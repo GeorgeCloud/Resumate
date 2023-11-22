@@ -57,3 +57,14 @@ export type FormContextPropsTypes = {
   nextPage: (data: Partial<FormDataType>) => void;
   prevPage: () => void;
 }
+
+export type ApplicationIntakePropTypes = {
+  storageKey: string;
+}
+export interface LocalStorageButtonProps {
+  handleSaveClick: () => void;
+}
+
+export interface SaveButtonProps {
+  formData: FormDataType;
+}
