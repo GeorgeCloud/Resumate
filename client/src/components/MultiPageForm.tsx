@@ -11,18 +11,7 @@ import type { PageType, FormDataType } from '../lib/types'
 export default function MultiPageForm() {
   const navigate = useNavigate();
   const { page } = useParams();
-  const { formData, setFormData, nextPage, prevPage } = useFormContext();
-
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData({
-      ...formData,
-      personalData: {
-        ...formData.personalData,
-        [field]: value
-      },
-    });
-  }
+  const { formData, nextPage, prevPage } = useFormContext();
 
   function handleNext() {
     console.log('form data', formData);
@@ -49,22 +38,22 @@ export default function MultiPageForm() {
     {
       id: 1,
       name: 'personal',
-      component: <Personal handleInputChange={handleInputChange} />
+      component: <Personal />
     },
     {
       id: 2,
       name: 'education',
-      component: <Education handleInputChange={handleInputChange} />
+      component: <Education />
     },
     {
       id: 3,
       name: 'professional',
-      component: <Professional handleInputChange={handleInputChange} />
+      component: <Professional />
     },
     {
       id: 4,
       name: 'projects',
-      component: <Projects handleInputChange={handleInputChange} />
+      component: <Projects />
     },
     {
       id: 5,
