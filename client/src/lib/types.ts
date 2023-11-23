@@ -5,10 +5,6 @@ export type PageType = {
   component: JSX.Element;
 };
 
-// export type PagePropsType = {
-//   handleInputChange: (field: string, value: string) => void;
-// }
-
 export type PageComponentProps = {
   handleInputChange: (field: string, value: string) => void;
 }
@@ -17,6 +13,29 @@ export type ContextPropsType = {
   children: React.ReactNode;
 }
 
+export type EducationDataType = {
+  schoolName: string;
+  cityState: string;
+  degreeTitle: string;
+  startDate: string;
+  endDate: string;
+}
+
+export type ProfessionalDataType = {
+  title: string;
+  companyName: string;
+  startDate: string;
+  endDate: string;
+  cityState: string;
+}
+
+export type ProjectsDataType = {
+  projectTitle: string;
+  url: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+}
 export type FormDataType = {
   personalData: {
     firstName: string;
@@ -27,27 +46,9 @@ export type FormDataType = {
     github: string;
     title: string;
   },
-  educationData: {
-    schoolName: string;
-    cityState: string;
-    degreeTitle: string;
-    startDate: string;
-    endDate: string;
-  },
-  professionalData: {
-    title: string;
-    companyName: string;
-    startDate: string;
-    endDate: string;
-    cityState: string;
-  },
-  projectsData: {
-    projectTitle: string;
-    url: string;
-    description: string;
-    startDate: string;
-    endDate: string;
-  }
+  educationData: EducationDataType[],
+  professionalData: ProfessionalDataType[],
+  projectsData: ProjectsDataType[]
 }
 
 export type FormContextPropsTypes = {
