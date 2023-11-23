@@ -1,32 +1,39 @@
 import React, { useState } from 'react';
-import type { ApplicationIntakePropTypes } from '../../lib/types'
 import IntakeButton from './IntakeButton';
+import axios from 'axios';
 
 export default function IntakeForm({ storageKey }: ApplicationIntakePropTypes) {
-  const [inputText, setInputText] = useState<string>('');
-  const [savedText, setSavedText] = useState<string | null>(null);
+  const [jobListingDesc, setJobListingDesc] = useState<string>('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputText(e.target.value);
+  const handleJobListingChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setJobListingDesc(e.target.value);
   };
 
-  const handleSaveClick = () => {
-    localStorage.setItem(storageKey, inputText);
-    setSavedText(inputText);
-    setInputText('');
+  const generateResumeClick = () => {
+    axios({
+      url: 'http://localhost:5000',  // Adjust the endpoint
+      method: 'POST',
+      data: {
+        resumeDetails: JSON.parse(localStorage['formData']),
+        jobListingDesc: jobListingDesc
+      },
+      responseType: 'blob',
+    })
+      .then(response => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+
+        window.open(url, '_blank');
+      })
+      .catch(error => console.error('Error fetching PDF:', error));
   };
 
   return (
     <div>
       <div>
-        <label>Insert Text:</label>
-        <textarea value={inputText} onChange={handleInputChange} />
+        <label>Job Listing Text:</label>
+        <textarea onChange={handleJobListingChange} />
       </div>
-      <IntakeButton handleSaveClick={handleSaveClick} />
-      <div>
-        <strong>Saved text:</strong>
-        <p>{savedText}</p>
-      </div>
+      <button onClick={generateResumeClick}>Generate Resume</button>
     </div>
   );
-};
+}

@@ -4,26 +4,28 @@ from job_parser import JobParser
 from job_listing import job_listing
 from chat_gpt import ChatGPT
 from flask import Flask, request, send_file
+from flask_cors import CORS
 import os
 
 EXPERIENCE_NUM_OF_BULLETS = 4
 PROJECTS_NUM_OF_BULLETS   = 3
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def create_resume():
     user = UserProfile(
-        email             = request.json['email'],
-        title             = request.json['title'],
-        full_name         = request.json['full_name'],
-        phone_number      = request.json['phone_number'],
-        linkedin_username = request.json['linkedin_username'],
-        github_username   = request.json['github_username'],
-        experiences       = request.json['experiences'],
-        projects          = request.json['projects'],
-        education         = request.json['education'],
-        stack             = request.json['stack'],
+        email             = request.json['personalDetails'],
+        title             = request.json['personalDetails'],
+        full_name         = request.json['personalDetails'],
+        phone_number      = request.json['personalDetails'],
+        linkedin_username = request.json['personalDetails'],
+        github_username   = request.json['personalDetails'],
+        experiences       = request.json['professionalData'],
+        projects          = request.json['projectsData'],
+        education         = request.json['educationData'],
+        # stack             = request.json['stack'],
     )
 
     chatgpt = ChatGPT(user, job_listing)
