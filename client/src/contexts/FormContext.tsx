@@ -9,7 +9,7 @@ const FormContext = createContext<FormContextPropsTypes | undefined>(undefined);
 
 export function FormProvider({ children }: ContextPropsType) {
   const [formData, setFormData] = useState<FormDataType>({
-    personalData: {
+    "Personal Data": {
       firstName: '',
       lastName: '',
       phoneNumber: '',
@@ -18,21 +18,21 @@ export function FormProvider({ children }: ContextPropsType) {
       github: '',
       title: ''
     },
-    educationData: [{
+    "Education Data": [{
       schoolName: '',
       cityState: '',
       degreeTitle: '',
       startDate: '',
       endDate: ''
     }],
-    professionalData: [{
+    "Professional Data": [{
       title: '',
       companyName: '',
       startDate: '',
       endDate: '',
       cityState: ''
     }],
-    projectsData: [{
+    "Projects Data": [{
       projectTitle: '',
       url: '',
       description: '',

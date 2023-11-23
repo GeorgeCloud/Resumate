@@ -9,8 +9,8 @@ export default function Personal() {
   const handleInputChange = (field: string, value: string) => {
     setFormData({
       ...formData,
-      personalData: {
-        ...formData.personalData,
+      "Personal Data": {
+        ...formData["Personal Data"],
         [field]: value
       },
     });
@@ -32,7 +32,7 @@ export default function Personal() {
             className="rounded-md"
             id="firstName"
             name="firstName"
-            value={formData.personalData.firstName}
+            value={formData["Personal Data"].firstName}
             onChange={(e) => handleInputChange('firstName', e.target.value)}
           />
         </div>
@@ -50,7 +50,7 @@ export default function Personal() {
             className="rounded-md"
             id="lastName"
             name="lastName"
-            value={formData.personalData.lastName}
+            value={formData["Personal Data"].lastName}
             onChange={(e) => handleInputChange('lastName', e.target.value)}
           />
         </div>
@@ -68,7 +68,7 @@ export default function Personal() {
             className="rounded-md"
             id="phoneNumber"
             name="phoneNumber"
-            value={formData.personalData.phoneNumber}
+            value={formData["Personal Data"].phoneNumber}
             onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
           />
         </div>
@@ -86,7 +86,7 @@ export default function Personal() {
             className="rounded-md"
             id="email"
             name="email"
-            value={formData.personalData.email}
+            value={formData["Personal Data"].email}
             onChange={(e) => handleInputChange('email', e.target.value)}
           />
         </div>
@@ -104,7 +104,7 @@ export default function Personal() {
             className="rounded-md"
             id="linkedIn"
             name="linkedIn"
-            value={formData.personalData.linkedIn}
+            value={formData["Personal Data"].linkedIn}
             onChange={(e) => handleInputChange('linkedIn', e.target.value)}
           />
         </div>
@@ -122,7 +122,7 @@ export default function Personal() {
             className="rounded-md"
             id="github"
             name="github"
-            value={formData.personalData.github}
+            value={formData["Personal Data"].github}
             onChange={(e) => handleInputChange('github', e.target.value)}
           />
         </div>
@@ -140,7 +140,7 @@ export default function Personal() {
             className="rounded-md"
             id="title"
             name="title"
-            value={formData.personalData.title}
+            value={formData["Personal Data"].title}
             onChange={(e) => handleInputChange('title', e.target.value)}
           />
         </div>
