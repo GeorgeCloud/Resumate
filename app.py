@@ -15,17 +15,19 @@ CORS(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def create_resume():
+    user_info, job_listing = request.json['user_info'], request.json['job_listing']
+
     user = UserProfile(
-        email             = request.json['personalDetails'],
-        title             = request.json['personalDetails'],
-        full_name         = request.json['personalDetails'],
-        phone_number      = request.json['personalDetails'],
-        linkedin_username = request.json['personalDetails'],
-        github_username   = request.json['personalDetails'],
-        experiences       = request.json['professionalData'],
-        projects          = request.json['projectsData'],
-        education         = request.json['educationData'],
-        # stack             = request.json['stack'],
+        email             = user_info['personal_data']['email'],
+        title             = user_info['personal_data']['title'],
+        full_name         = user_info['personal_data']['full_name'],
+        phone_number      = user_info['personal_data']['phone_number'],
+        linkedin_username = user_info['personal_data']['linkedin_username'],
+        github_username   = user_info['personal_data']['github_username'],
+        experiences       = user_info['experiences'],
+        projects          = user_info['projects'],
+        education         = user_info['education'],
+        stack             = user_info['stack'],
     )
 
     chatgpt = ChatGPT(user, job_listing)

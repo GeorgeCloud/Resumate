@@ -10,17 +10,61 @@ export default function IntakeForm({ storageKey }: ApplicationIntakePropTypes) {
   };
 
   const generateResumeClick = () => {
+    const formData = JSON.parse(localStorage['formData'])
+
+    const userInfo = {
+      personal_data: {
+        full_name        : formData['personalData']['firstName'],
+        phone_number     : formData['personalData']['phoneNumber'],
+        email            : formData['personalData']['email'],
+        linkedin_username: formData['personalData']['linkedIn'],
+        github_username  : formData['personalData']['github'],
+        title            : formData['personalData']['title'],
+      },
+      education: {
+        name        : formData['educationData']['schoolName'],
+        city_state  : formData['educationData']['cityState'],
+        degree_title: formData['educationData']['degreeTitle'],
+        start_date  : formData['educationData']['startDate'],
+        end_date    : formData['educationData']['endDate']
+      },
+      experiences: [{
+        city_state  : formData['professionalData']['cityState'],
+        company_name: formData['professionalData']['companyName'],
+        bullets     : [],
+        end_date    : formData['professionalData']['endDate'],
+        start_date  : formData['professionalData']['startDate'],
+        title       : formData['professionalData']['title'],
+      }],
+      projects: [{
+        title      : formData['projectsData']['projectTitle'],
+        url        : formData['projectsData']['url'],
+        description: formData['projectsData']['description'],
+        bullets    : [],
+        start_date : formData['projectsData']['startDate'],
+        end_date   : formData['projectsData']['endDate'],
+        tech_stack : [],
+      }],
+      stack: {
+        languages      : ["Python"],
+        frameworks     : [],
+        developer_tools: [],
+        libraries      : []
+      }
+    }
+
     axios({
-      url: 'http://localhost:5000',  // Adjust the endpoint
+      url: 'http://localhost:5000',
       method: 'POST',
       data: {
-        resumeDetails: JSON.parse(localStorage['formData']),
-        jobListingDesc: jobListingDesc
+        user_info: userInfo,
+        job_listing: jobListingDesc
       },
-      responseType: 'blob',
+      responseType: 'arraybuffer',
     })
       .then(response => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const blob = new Blob([response.data], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
 
         window.open(url, '_blank');
       })
