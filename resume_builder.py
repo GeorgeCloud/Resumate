@@ -1,13 +1,14 @@
 from resume_settings import file_configuration
+from datetime import datetime
 import os
 
 NUM_OF_PROJECTS = 3
-OUTPUT_FILE_NAME = 'resume_output.pdf'
 
 # Returns a resume in Jake's Resume format -> str
 class ResumeBuilder:
     def __init__(self, user):
         self.user = user
+        self.filename = self.create_resume_filename()
 
     def generate_resume(self):
         print('[*] Generating resume...')
@@ -28,7 +29,7 @@ class ResumeBuilder:
             os.system("latex -interaction=batchmode temp.tex")
 
             # Convert the .dvi file to a PDF
-            os.system(f"dvipdf temp.dvi {OUTPUT_FILE_NAME}")
+            os.system(f"dvipdf temp.dvi {self.filename}")
 
             # Clean up temporary files
             os.remove("temp.tex")
@@ -40,6 +41,14 @@ class ResumeBuilder:
             print('\n[*] Resume Generated')
         except Exception as e:
             print("[*] Error:", str(e))
+
+    def create_resume_filename(self):
+        # creates resume filename: 'John_Resume_TimeStamp.pdf'
+        users_name = self.user.full_name.split(' ')[0].capitalize()
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        filename = f'{users_name}_Resume_{timestamp}.pdf'
+
+        return filename
 
     def create_header(self):
         header_template = r"""
