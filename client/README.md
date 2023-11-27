@@ -1,17 +1,18 @@
-# React + TypeScript + Vite
+# Resumate (Client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React + TypeScript + Vite
 
-Currently, two official plugins are available:
+The template used for this project provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+This project uses one of two official plugins available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This project's ESLint configuration was updated to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+- The top-level `parserOptions` property in the ESLint configuration was edited by adding:
 
 ```js
    parserOptions: {
@@ -22,6 +23,10 @@ If you are developing a production application, we recommend updating the config
    },
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- The `plugin:@typescript-eslint/recommended` was replaced with `plugin:@typescript-eslint/strict-type-checked`
+- The `plugin:@typescript-eslint/stylistic-type-checked` was added.
+- [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) was installed, and `plugin:react/recommended` & `plugin:react/jsx-runtime` were added to to the `extends` list
+
+## Jest for testing
+
+This project's testing framework is Jest.
