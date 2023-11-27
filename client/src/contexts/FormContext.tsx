@@ -43,7 +43,6 @@ export function FormProvider({ children }: ContextPropsType) {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-
   const nextPage = (data: Partial<FormDataType>) => {
     setFormData((prevData) => {
       const key = 'FORM_DATA';

@@ -1,6 +1,5 @@
 import openai
 from job_parser import *
-from user_profile import user
 from dotenv import load_dotenv
 import os
 
@@ -9,6 +8,7 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 
 class ChatGPT:
     def __init__(self, user, job_listing):
+        self.user = user
         self.probabilty = 0
         self.bullets = []
         self.job_listing = job_listing
@@ -63,7 +63,7 @@ class ChatGPT:
 
         query=f'''Now modify my these resume bullet points and utilize 1
         keyword for each bullet. Make sure to use the best keyword that matches
-        the context of these bullets: {user.experience_bullets}.
+        the context of these bullets: {self.user.experience_bullets}.
         '''
 
         unsanitized_bullets = self.run_conversion(context, query)
@@ -71,7 +71,7 @@ class ChatGPT:
         self.bullets = unsanitized_bullets.replace("\n", "").replace(".", "").split('- ')[1:]  # Sanitize special chars.
         print('bullets:', self.bullets)
 
-        for exp_idx, experience in enumerate(user.experiences):
+        for exp_idx, experience in enumerate(self.user.experiences):
             exp_bullet_len = len(experience['bullets'])
-            user.experiences[exp_idx]['bullets'] = self.bullets[:exp_bullet_len]
+            self.user.experiences[exp_idx]['bullets'] = self.bullets[:exp_bullet_len]
             self.bullets = self.bullets[exp_bullet_len:]
