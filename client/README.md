@@ -1,17 +1,16 @@
-# React + TypeScript + Vite
+# Resumate > Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Vite + React + TypeScript
 
-Currently, two official plugins are available:
+This project uses the Vite template, which provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This document was originally provided by the template, and has been altered to explain the relevant implemented changes.
 
-## Expanding the ESLint configuration
+One of the two official plugins that are available for Fast Refresh is used: [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) from [Babel](https://babeljs.io/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## ESLint
 
-- Configure the top-level `parserOptions` property like this:
+The ESLint configuration has been altered to enable type aware lint rules:
 
 ```js
    parserOptions: {
@@ -22,6 +21,11 @@ If you are developing a production application, we recommend updating the config
    },
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+In addition, the following plugins have been added to the `extends` list of the ESLint configuration:
+
+- `plugin:@typescript-eslint/strict-type-checked`
+- `plugin:@typescript-eslint/stylistic-type-checked`
+- `plugin:react/recommended`
+- `plugin:react/jsx-runtime`
+
+The [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) package was also installed.
