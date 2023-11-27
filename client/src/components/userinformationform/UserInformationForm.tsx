@@ -6,9 +6,9 @@ import Education from './Education';
 import Professional from './Professional';
 import Projects from './Projects';
 import Summary from './Summary';
-import type { PageType, FormDataType } from '../../lib/types'
+import type { PageType, FormDataType } from '../../lib/types';
 
-export default function MultiPageForm() {
+export default function UserInfoForm() {
   const navigate = useNavigate();
   const { page } = useParams();
   const { formData, nextPage, prevPage } = useFormContext();
@@ -23,7 +23,6 @@ export default function MultiPageForm() {
       }
     }
   }
-
   function handlePrev() {
     if (currentPageObj) {
       const prevPageObj = pages.find((p) => p.id === currentPageObj?.id - 1);
@@ -43,22 +42,27 @@ export default function MultiPageForm() {
     {
       id: 2,
       name: 'education',
-      component: <Education />
+      component: <Education />,
+      allowMultipleEntries: true
     },
     {
       id: 3,
       name: 'professional',
-      component: <Professional />
+      component: <Professional />,
+      allowMultipleEntries: true
+
     },
     {
       id: 4,
       name: 'projects',
-      component: <Projects />
+      component: <Projects />,
+      allowMultipleEntries: true
+
     },
     {
       id: 5,
       name: 'summary',
-      component: <Summary />
+      component: <Summary formData={formData} />,
     }
   ];
 
@@ -80,10 +84,14 @@ export default function MultiPageForm() {
       <div className="max-w-lg mx-auto flex justify-center">
         <div className="max-w-lg mx-auto flex justify-center">
           {currentPageObj?.id !== 1 && (
-            <button className="mx-2 mb-4" onClick={handlePrev}>Previous</button>
+            <button className="mx-2 mb-4" onClick={handlePrev}>
+              Previous
+            </button>
           )}
           {currentPageObj?.name !== 'summary' ? (
-            <button className="mx-2 mb-4" onClick={handleNext}>Next</button>
+            <button className="mx-2 mb-4" onClick={handleNext}>
+              Next
+            </button>
           ) : (
             <SaveFormButton formData={formData} />
           )}

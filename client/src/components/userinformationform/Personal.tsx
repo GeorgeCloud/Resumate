@@ -5,21 +5,18 @@ export default function Personal() {
     formData,
     setFormData
   } = useFormContext();
-
   const handleInputChange = (field: string, value: string) => {
     setFormData({
       ...formData,
-      personalData: {
-        ...formData.personalData,
+      "Personal Data": {
+        ...formData["Personal Data"],
         [field]: value
       },
     });
   }
-
   return (
     <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Personal Detail</h2>
-
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="firstName">
@@ -32,12 +29,11 @@ export default function Personal() {
             className="rounded-md"
             id="firstName"
             name="firstName"
-            value={formData.personalData.firstName}
+            value={formData["Personal Data"].firstName}
             onChange={(e) => handleInputChange('firstName', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="lastName">
@@ -50,12 +46,11 @@ export default function Personal() {
             className="rounded-md"
             id="lastName"
             name="lastName"
-            value={formData.personalData.lastName}
+            value={formData["Personal Data"].lastName}
             onChange={(e) => handleInputChange('lastName', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="phoneNumber">
@@ -68,12 +63,11 @@ export default function Personal() {
             className="rounded-md"
             id="phoneNumber"
             name="phoneNumber"
-            value={formData.personalData.phoneNumber}
+            value={formData["Personal Data"].phoneNumber}
             onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="email">
@@ -86,12 +80,11 @@ export default function Personal() {
             className="rounded-md"
             id="email"
             name="email"
-            value={formData.personalData.email}
+            value={formData["Personal Data"].email}
             onChange={(e) => handleInputChange('email', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="linkedIn">
@@ -104,12 +97,11 @@ export default function Personal() {
             className="rounded-md"
             id="linkedIn"
             name="linkedIn"
-            value={formData.personalData.linkedIn}
+            value={formData["Personal Data"].linkedIn}
             onChange={(e) => handleInputChange('linkedIn', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="github">
@@ -122,12 +114,11 @@ export default function Personal() {
             className="rounded-md"
             id="github"
             name="github"
-            value={formData.personalData.github}
+            value={formData["Personal Data"].github}
             onChange={(e) => handleInputChange('github', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="title">
@@ -140,7 +131,7 @@ export default function Personal() {
             className="rounded-md"
             id="title"
             name="title"
-            value={formData.personalData.title}
+            value={formData["Personal Data"].title}
             onChange={(e) => handleInputChange('title', e.target.value)}
           />
         </div>

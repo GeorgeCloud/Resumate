@@ -1,23 +1,19 @@
-import { useFormContext } from "../../contexts/FormContext";
+import { useFormContext } from '../../contexts/FormContext';
+import type { ProfessionalDataType } from '../../lib/types';
 
-export default function Professional() {
-  const {
-    formData,
-    setFormData
-  } = useFormContext();
+export default function ProfessionalForm({ entry }: { entry: ProfessionalDataType }) {
+  const { setFormData } = useFormContext();
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData({
-      ...formData,
-      professionalData: {
-        ...formData.professionalData,
-        [field]: value
-      },
-    });
-  }
+  function handleInputChange(field: string, value: string) {
+    setFormData((prevData) => ({
+      ...prevData,
+      "Professional Data": prevData["Professional Data"].map((item) =>
+        item === entry ? { ...item, [field]: value } : item
+      ),
+    }));
+  };
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-6 m-8">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Professional Detail</h2>
+    <div>
 
       <div className="row mb-4">
         <div className="col1 px-6">
@@ -31,12 +27,11 @@ export default function Professional() {
             className="rounded-md"
             id="title"
             name="title"
-            value={formData.professionalData.title}
+            value={entry.title}
             onChange={(e) => handleInputChange('title', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-4">
         <div className="col1 px-6">
           <label htmlFor="companyName" className="flex justify-between">
@@ -49,12 +44,11 @@ export default function Professional() {
             className="rounded-md"
             id="companyName"
             name="companyName"
-            value={formData.professionalData.companyName}
+            value={entry.companyName}
             onChange={(e) => handleInputChange('companyName', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-4">
         <div className="col1 px-6">
           <label htmlFor="startDate" className="flex justify-between">
@@ -67,12 +61,11 @@ export default function Professional() {
             className="rounded-md"
             id="startDate"
             name="startDate"
-            value={formData.professionalData.startDate}
+            value={entry.startDate}
             onChange={(e) => handleInputChange('startDate', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-4">
         <div className="col1 px-6">
           <label htmlFor="endDate" className="flex justify-between">
@@ -85,12 +78,11 @@ export default function Professional() {
             className="rounded-md"
             id="endDate"
             name="endDate"
-            value={formData.professionalData.endDate}
+            value={entry.endDate}
             onChange={(e) => handleInputChange('endDate', e.target.value)}
           />
         </div>
       </div>
-
       <div className="row mb-4">
         <div className="col1 px-6">
           <label htmlFor="cityState" className="flex justify-between">
@@ -103,12 +95,12 @@ export default function Professional() {
             className="rounded-md"
             id="cityState"
             name="cityState"
-            value={formData.professionalData.cityState}
+            value={entry.cityState}
             onChange={(e) => handleInputChange('cityState', e.target.value)}
           />
         </div>
       </div>
 
     </div>
-  )
+  );
 }

@@ -3,6 +3,7 @@ export type PageType = {
   id: number;
   name: string;
   component: JSX.Element;
+  allowMultipleEntries?: boolean;
 };
 
 export type PageComponentProps = {
@@ -38,7 +39,7 @@ export type ProjectsDataType = {
 }
 
 export type FormDataType = {
-  personalData: {
+  "Personal Data": {
     firstName: string;
     lastName: string;
     phoneNumber: string;
@@ -47,9 +48,9 @@ export type FormDataType = {
     github: string;
     title: string;
   },
-  educationData: EducationDataType[],
-  professionalData: ProfessionalDataType[],
-  projectsData: ProjectsDataType[]
+  "Education Data": EducationDataType[],
+  "Professional Data": ProfessionalDataType[],
+  "Projects Data": ProjectsDataType[]
 }
 
 export type FormContextPropsTypes = {
