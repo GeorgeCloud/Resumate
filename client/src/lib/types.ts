@@ -38,8 +38,16 @@ export type ProjectsDataType = {
   endDate: string;
 }
 
+export type StackDataType = {
+  languages: string[];
+  frameworks: string[];
+  developer_tools: string[];
+  libraries: string[];
+
+}
+
 export type FormDataType = {
-  "Personal Data": {
+  personalData: {
     firstName: string;
     lastName: string;
     phoneNumber: string;
@@ -48,9 +56,10 @@ export type FormDataType = {
     github: string;
     title: string;
   },
-  "Education Data": EducationDataType[],
-  "Professional Data": ProfessionalDataType[],
-  "Projects Data": ProjectsDataType[]
+  educationData: EducationDataType[],
+  professionalData: ProfessionalDataType[],
+  projectsData: ProjectsDataType[],
+  stackData?: StackDataType
 }
 
 export type FormContextPropsTypes = {

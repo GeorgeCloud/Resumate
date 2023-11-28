@@ -77,7 +77,7 @@ export default function UserInfoForm() {
         }}
         className="max-w-xl mx-auto flex justify-center"
       >
-        <form action="#">
+        <form action="POST">
           {currentPageObj?.component}
         </form>
       </div>

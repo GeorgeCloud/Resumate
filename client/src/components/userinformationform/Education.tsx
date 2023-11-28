@@ -8,8 +8,8 @@ export default function Education() {
   function handleAddEntry() {
     setFormData({
       ...formData,
-      "Education Data": [
-        ...formData["Education Data"],
+      educationData: [
+        ...formData.educationData,
         {
           schoolName: '',
           cityState: '',
@@ -26,7 +26,7 @@ export default function Education() {
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Education Detail</h2>
       <div>
         <button onClick={handleAddEntry}><PiPlusBold /></button>
-        {formData["Education Data"].map((entry, index) => (
+        {formData.educationData.map((entry, index) => (
           <EducationForm key={index} entry={entry} />
         ))}
       </div>

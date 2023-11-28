@@ -8,8 +8,8 @@ export default function Professional() {
   function handleAddEntry() {
     setFormData({
       ...formData,
-      "Professional Data": [
-        ...formData["Professional Data"],
+      professionalData: [
+        ...formData.professionalData,
         {
           title: '',
           companyName: '',
@@ -26,7 +26,7 @@ export default function Professional() {
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Professional Detail</h2>
       <div>
         <button onClick={handleAddEntry}><PiPlusBold /></button>
-        {formData["Professional Data"].map((entry, index) => (
+        {formData.professionalData.map((entry, index) => (
           <ProfessionalForm key={index} entry={entry} />
         ))}
       </div>

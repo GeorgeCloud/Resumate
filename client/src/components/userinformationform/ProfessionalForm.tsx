@@ -7,7 +7,7 @@ export default function ProfessionalForm({ entry }: { entry: ProfessionalDataTyp
   function handleInputChange(field: string, value: string) {
     setFormData((prevData) => ({
       ...prevData,
-      "Professional Data": prevData["Professional Data"].map((item) =>
+      professionalData: prevData.professionalData.map((item) =>
         item === entry ? { ...item, [field]: value } : item
       ),
     }));

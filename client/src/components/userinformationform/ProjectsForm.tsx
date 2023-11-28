@@ -7,7 +7,7 @@ export default function ProjectsForm({ entry }: { entry: ProjectsDataType }) {
   function handleInputChange(field: string, value: string) {
     setFormData((prevData) => ({
       ...prevData,
-      "Projects Data": prevData["Projects Data"].map((item) =>
+      projectsData: prevData.projectsData.map((item) =>
         item === entry ? { ...item, [field]: value } : item
       ),
     }));

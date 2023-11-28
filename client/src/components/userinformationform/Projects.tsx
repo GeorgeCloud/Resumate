@@ -8,8 +8,8 @@ export default function Projects() {
   function handleAddEntry() {
     setFormData({
       ...formData,
-      "Projects Data": [
-        ...formData["Projects Data"],
+      projectsData: [
+        ...formData.projectsData,
         {
           projectTitle: '',
           url: '',
@@ -26,7 +26,7 @@ export default function Projects() {
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Projects Detail</h2>
       <div>
         <button onClick={handleAddEntry}><PiPlusBold /></button>
-        {formData["Projects Data"].map((entry, index) => (
+        {formData.projectsData.map((entry, index) => (
           <ProjectsForm key={index} entry={entry} />
         ))}
       </div>

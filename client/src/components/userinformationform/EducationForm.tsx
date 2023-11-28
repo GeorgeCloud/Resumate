@@ -7,7 +7,7 @@ export default function EducationForm({ entry }: { entry: EducationDataType }) {
   function handleInputChange(field: string, value: string) {
     setFormData((prevData) => ({
       ...prevData,
-      "Education Data": prevData["Education Data"].map((item) =>
+      educationData: prevData.educationData.map((item) =>
         item === entry ? { ...item, [field]: value } : item
       ),
     }));
