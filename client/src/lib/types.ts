@@ -1,3 +1,4 @@
+/******** userinformationform **********/
 
 export type PageType = {
   id: number;
@@ -9,6 +10,9 @@ export type PageType = {
 export type PageComponentProps = {
   handleInputChange: (field: string, value: string) => void;
 }
+
+
+/******** context **********/
 
 export type ContextPropsType = {
   children: React.ReactNode;
@@ -43,7 +47,6 @@ export type StackDataType = {
   frameworks: string[];
   developer_tools: string[];
   libraries: string[];
-
 }
 
 export type FormDataType = {
@@ -59,7 +62,7 @@ export type FormDataType = {
   educationData: EducationDataType[],
   professionalData: ProfessionalDataType[],
   projectsData: ProjectsDataType[],
-  stackData?: StackDataType
+  stackData: StackDataType
 }
 
 export type FormContextPropsTypes = {
@@ -70,12 +73,15 @@ export type FormContextPropsTypes = {
   prevPage: () => void;
 }
 
+
+/******** intake **********/
+
 export type ApplicationIntakePropTypes = {
   storageKey: string;
 }
-export interface LocalStorageButtonProps {
-  handleSaveClick: () => void;
-}
+
+
+/******** saveformbutton **********/
 
 export interface SaveButtonProps {
   formData: FormDataType;

@@ -5,6 +5,7 @@ export default function Personal() {
     formData,
     setFormData
   } = useFormContext();
+
   const handleInputChange = (field: string, value: string) => {
     setFormData({
       ...formData,

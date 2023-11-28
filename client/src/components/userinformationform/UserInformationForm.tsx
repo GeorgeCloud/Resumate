@@ -5,6 +5,7 @@ import Personal from './Personal';
 import Education from './Education';
 import Professional from './Professional';
 import Projects from './Projects';
+import Stack from './Stack';
 import Summary from './Summary';
 import type { PageType, FormDataType } from '../../lib/types';
 
@@ -61,6 +62,11 @@ export default function UserInfoForm() {
     },
     {
       id: 5,
+      name: 'stack',
+      component: <Stack />
+    },
+    {
+      id: 6,
       name: 'summary',
       component: <Summary formData={formData} />,
     }
