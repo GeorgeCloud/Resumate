@@ -1,20 +1,61 @@
+/******** userinformationform **********/
 
 export type PageType = {
   id: number;
   name: string;
   component: JSX.Element;
+  allowMultipleEntries?: boolean;
 };
-
-// export type PagePropsType = {
-//   handleInputChange: (field: string, value: string) => void;
-// }
 
 export type PageComponentProps = {
   handleInputChange: (field: string, value: string) => void;
 }
 
+
+/******** context **********/
+
 export type ContextPropsType = {
   children: React.ReactNode;
+}
+
+export type EducationDataType = {
+  index?: number;
+  schoolName: string;
+  cityState: string;
+  degreeTitle: string;
+  startDate: string;
+  endDate: string;
+}
+
+export type ProfessionalDataType = {
+  index?: number;
+  title: string;
+  companyName: string;
+  startDate: string;
+  endDate: string;
+  cityState: string;
+  contribution1?: string;
+  contribution2?: string;
+  contribution3?: string;
+}
+
+export type ProjectsDataType = {
+  index?: number;
+  projectTitle: string;
+  url: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  contribution1?: string;
+  contribution2?: string;
+  contribution3?: string;
+}
+
+export type StackDataType = {
+  languages: string[];
+  frameworks: string[];
+  developer_tools: string[];
+  libraries: string[];
 }
 
 export type FormDataType = {
@@ -27,27 +68,10 @@ export type FormDataType = {
     github: string;
     title: string;
   },
-  educationData: {
-    schoolName: string;
-    cityState: string;
-    degreeTitle: string;
-    startDate: string;
-    endDate: string;
-  },
-  professionalData: {
-    title: string;
-    companyName: string;
-    startDate: string;
-    endDate: string;
-    cityState: string;
-  },
-  projectsData: {
-    projectTitle: string;
-    url: string;
-    description: string;
-    startDate: string;
-    endDate: string;
-  }
+  educationData: EducationDataType[],
+  professionalData: ProfessionalDataType[],
+  projectsData: ProjectsDataType[],
+  stackData: StackDataType
 }
 
 export type FormContextPropsTypes = {
@@ -58,12 +82,15 @@ export type FormContextPropsTypes = {
   prevPage: () => void;
 }
 
+
+/******** intake **********/
+
 export type ApplicationIntakePropTypes = {
   storageKey: string;
 }
-export interface LocalStorageButtonProps {
-  handleSaveClick: () => void;
-}
+
+
+/******** saveformbutton **********/
 
 export interface SaveButtonProps {
   formData: FormDataType;

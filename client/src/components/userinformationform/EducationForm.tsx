@@ -1,28 +1,24 @@
 import { useFormContext } from '../../contexts/FormContext';
+import type { EducationDataType } from '../../lib/types';
 
-export default function Education() {
-  const {
-    formData,
-    setFormData
-  } = useFormContext();
+export default function EducationForm({ entry, index }: { entry: EducationDataType, index: number }) {
+  const { setFormData } = useFormContext();
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData({
-      ...formData,
-      educationData: {
-        ...formData.educationData,
-        [field]: value
-      },
-    });
+  function handleInputChange(field: string, value: string) {
+    setFormData((prevData) => ({
+      ...prevData,
+      educationData: prevData.educationData.map((item, i) =>
+        i === index ? { ...item, [field]: value } : item
+      ),
+    }));
   }
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-6 m-8">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Education Detail</h2>
+    <div>
 
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="schoolName">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="schoolName" className="text-sm/4">
             School Name
           </label>
         </div>
@@ -32,15 +28,14 @@ export default function Education() {
             className="rounded-md"
             id="schoolName"
             name="schoolName"
-            value={formData.educationData.schoolName}
+            value={entry.schoolName}
             onChange={(e) => handleInputChange('schoolName', e.target.value)}
           />
         </div>
       </div>
-
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="cityState" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="cityState" className="text-sm/4">
             City & State
           </label>
         </div>
@@ -50,15 +45,14 @@ export default function Education() {
             className="rounded-md"
             id="cityState"
             name="cityState"
-            value={formData.educationData.cityState}
+            value={entry.cityState}
             onChange={(e) => handleInputChange('cityState', e.target.value)}
           />
         </div>
       </div>
-
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="degreeTitle" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="degreeTitle" className="text-sm/4">
             Degree Title
           </label>
         </div>
@@ -68,15 +62,14 @@ export default function Education() {
             className="rounded-md"
             id="degreeTitle"
             name="degreeTitle"
-            value={formData.educationData.degreeTitle}
+            value={entry.degreeTitle}
             onChange={(e) => handleInputChange('degreeTitle', e.target.value)}
           />
         </div>
       </div>
-
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="startDate" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="startDate" className="text-sm/4">
             Start Date
           </label>
         </div>
@@ -86,15 +79,14 @@ export default function Education() {
             className="rounded-md"
             id="startDate"
             name="startDate"
-            value={formData.educationData.startDate}
+            value={entry.startDate}
             onChange={(e) => handleInputChange('startDate', e.target.value)}
           />
         </div>
       </div>
-
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="endDate" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="endDate" className="text-sm/4">
             End Date
           </label>
         </div>
@@ -104,12 +96,12 @@ export default function Education() {
             className="rounded-md"
             id="endDate"
             name="endDate"
-            value={formData.educationData.endDate}
+            value={entry.endDate}
             onChange={(e) => handleInputChange('endDate', e.target.value)}
           />
         </div>
       </div>
 
     </div>
-  )
+  );
 }

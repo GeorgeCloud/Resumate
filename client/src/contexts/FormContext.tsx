@@ -18,26 +18,38 @@ export function FormProvider({ children }: ContextPropsType) {
       github: '',
       title: ''
     },
-    educationData: {
+    educationData: [{
       schoolName: '',
       cityState: '',
       degreeTitle: '',
       startDate: '',
       endDate: ''
-    },
-    professionalData: {
+    }],
+    professionalData: [{
       title: '',
       companyName: '',
       startDate: '',
       endDate: '',
-      cityState: ''
-    },
-    projectsData: {
+      cityState: '',
+      contribution1: '',
+      contribution2: '',
+      contribution3: ''
+    }],
+    projectsData: [{
       projectTitle: '',
       url: '',
       description: '',
       startDate: '',
-      endDate: ''
+      endDate: '',
+      contribution1: '',
+      contribution2: '',
+      contribution3: ''
+    }],
+    stackData: {
+      languages: [],
+      frameworks: [],
+      developer_tools: [],
+      libraries: []
     }
   });
 
@@ -45,8 +57,9 @@ export function FormProvider({ children }: ContextPropsType) {
 
   const nextPage = (data: Partial<FormDataType>) => {
     setFormData((prevData) => {
+      const key = 'FORM_DATA'
       const updatedData = { ...prevData, ...data };
-      localStorage.setItem('formData', JSON.stringify(updatedData));
+      localStorage.setItem(key, JSON.stringify(updatedData));
       return updatedData;
     });
     setCurrentPage((prevPage) => Math.min(prevPage + 1, 5));

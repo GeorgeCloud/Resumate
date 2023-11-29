@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import IntakeButton from './IntakeButton';
 import axios from 'axios';
+import type { ApplicationIntakePropTypes, EducationDataType, ProfessionalDataType, ProjectsDataType, FormDataType } from '../../lib/types';
 
 export default function IntakeForm({ storageKey }: ApplicationIntakePropTypes) {
   const [jobListingDesc, setJobListingDesc] = useState<string>('');
@@ -10,46 +10,46 @@ export default function IntakeForm({ storageKey }: ApplicationIntakePropTypes) {
   };
 
   const generateResumeClick = () => {
-    const formData = JSON.parse(localStorage['formData'])
+    const formData: FormDataType = JSON.parse(localStorage.getItem(storageKey) || '{}')
 
     const userInfo = {
       personal_data: {
-        full_name        : formData['personalData']['firstName'],
-        phone_number     : formData['personalData']['phoneNumber'],
-        email            : formData['personalData']['email'],
-        linkedin_username: formData['personalData']['linkedIn'],
-        github_username  : formData['personalData']['github'],
-        title            : formData['personalData']['title'],
+        full_name: formData.personalData?.firstName,
+        phone_number: formData.personalData?.phoneNumber,
+        email: formData.personalData?.email,
+        linkedin_username: formData.personalData?.linkedIn,
+        github_username: formData.personalData?.github,
+        title: formData.personalData?.title,
       },
-      education: {
-        name        : formData['educationData']['schoolName'],
-        city_state  : formData['educationData']['cityState'],
-        degree_title: formData['educationData']['degreeTitle'],
-        start_date  : formData['educationData']['startDate'],
-        end_date    : formData['educationData']['endDate']
-      },
-      experiences: [{
-        city_state  : formData['professionalData']['cityState'],
-        company_name: formData['professionalData']['companyName'],
-        bullets     : [],
-        end_date    : formData['professionalData']['endDate'],
-        start_date  : formData['professionalData']['startDate'],
-        title       : formData['professionalData']['title'],
-      }],
-      projects: [{
-        title      : formData['projectsData']['projectTitle'],
-        url        : formData['projectsData']['url'],
-        description: formData['projectsData']['description'],
-        bullets    : [],
-        start_date : formData['projectsData']['startDate'],
-        end_date   : formData['projectsData']['endDate'],
-        tech_stack : [],
-      }],
+      education: formData.educationData.map((data: EducationDataType) => ({
+        name: data.schoolName,
+        city_state: data.cityState,
+        degree_title: data.degreeTitle,
+        start_date: data.startDate,
+        end_date: data.endDate,
+      })),
+      experiences: formData.professionalData.map((data: ProfessionalDataType) => ({
+        city_state: data.cityState,
+        company_name: data.companyName,
+        bullets: [],
+        end_date: data.endDate,
+        start_date: data.startDate,
+        title: data.title,
+      })),
+      projects: formData.projectsData.map((data: ProjectsDataType) => ({
+        title: data.projectTitle,
+        url: data.url,
+        description: data.description,
+        bullets: [],
+        start_date: data.startDate,
+        end_date: data.endDate,
+        tech_stack: [],
+      })),
       stack: {
-        languages      : ["Python"],
-        frameworks     : [],
+        languages: ["JavaScript", "TypeScript", "Python"],
+        frameworks: [],
         developer_tools: [],
-        libraries      : []
+        libraries: []
       }
     }
 

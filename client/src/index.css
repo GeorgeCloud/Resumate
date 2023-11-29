@@ -6,31 +6,32 @@
   box-sizing: border-box;
 }
 
-:root {
-  --white: #ffffff;
-  --lavender-web: #e8eaf8;
-  --misty-rose: #fae2e0;
-  --timberwolf: #e2dadb;
-  --platinum: #dae2df;
-  --desert-sand: #e3c4b0;
-  --french-gray: #b4b8c5;
-  --cadet-gray: #9da2af;
-  --ash-gray: #a3a8a6;
-  --silver: #a4a198;
-  --paynes-gray: #556b7c;
-  --dim-gray: #6d696a;
-  --taupe-gray: #8d818c;
-  --jet: #444140;
-  --rich-black: #0d1e2b;
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #444140;
+    --background: #e8eaf8;
+    --primary: #8d818c;
+    --secondary: #e2dadb;
+    --accent: #556b7c;
+  }
+}
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #bfbcbb;
+    --background: #444140;
+    --primary: #7e727d;
+    --secondary: #251d1e;
+    --accent: #8399aa;
+  }
+}
+
+:root {
   font-family: 'Inter Tight', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: var(--white);
-  background-color: var(--jet);
-
+  color: var(--text);
+  background-color: var(--background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -38,21 +39,14 @@
   -webkit-text-size-adjust: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--jet);
-    background-color: var(--white);
-  }
-}
-
 a {
   font-weight: 500;
-  color: var(--platinum);
+  color: var(--text);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: var(--taupe-gray);
+  color: var(--accent);
 }
 
 body {
@@ -72,8 +66,8 @@ button {
   border: 1px solid transparent;
   font-size: 1em;
   font-weight: 500;
-  background-color: var(--french-gray);
-  color: var(--dim-gray);
+  background-color: var(--primary);
+  color: var(--text);
   cursor: pointer;
   transition: border-color 0.25s;
   padding: 0.75rem 1.25rem;
@@ -81,7 +75,7 @@ button {
 }
 
 button:hover {
-  border-color: var(--french-gray);
+  border-color: var(--text);
 }
 
 button:focus,
@@ -89,6 +83,19 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+
+.col1 {
+  text-align: left;
+  float: left;
+  width: 35%;
+  margin-top: 0.3rem;
+}
+
+.col2 {
+  float: right;
+  width: 75%;
+  margin-top: 0.3rem;
+}
 
 input[type=text],
 input[type=email],
@@ -98,29 +105,17 @@ select,
 textarea {
   width: 80%;
   padding: 0.75rem;
-  border: 1px solid var(--timberwolf);
+  border: 1px solid var(--primary);
   border-radius: 0.25rem;
   resize: vertical;
 }
 
 label {
-  padding: 0.75rem 0.75rem 0.75rem 0;
+  padding: 0.25rem 0.25rem 0.25rem 0;
   display: inline-block;
-  color: var(--dim-gray);
+  width: 100%;
 }
 
-.col1 {
-  text-align: left;
-  float: left;
-  width: 25%;
-  margin-top: 0.3rem;
-}
-
-.col2 {
-  float: left;
-  width: 75%;
-  margin-top: 0.3rem;
-}
 
 /* Clear floats after the columns */
 .row::after {
