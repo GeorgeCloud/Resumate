@@ -30,11 +30,11 @@ export default function Stack() {
     }
 
     setFormData(updateFormData);
-
   }
 
   return (
-    <div>
+    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
+      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Stack Information</h2>
       <div className="row mb-4">
         <div className="col1 px-6">
           <label htmlFor="languages">Languages</label>

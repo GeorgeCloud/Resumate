@@ -15,7 +15,6 @@ export default function UserInfoForm() {
   const { formData, nextPage, prevPage } = useFormContext();
 
   function handleNext() {
-    console.log('form data', formData);
     if (currentPageObj) {
       const nextPageObj = pages.find((p) => p.id === currentPageObj?.id + 1);
       if (nextPageObj) {
@@ -24,6 +23,7 @@ export default function UserInfoForm() {
       }
     }
   }
+  
   function handlePrev() {
     if (currentPageObj) {
       const prevPageObj = pages.find((p) => p.id === currentPageObj?.id - 1);
@@ -78,7 +78,7 @@ export default function UserInfoForm() {
     <div className="w-screen max-h-screen">
       <div
         style={{
-          height: '42rem',
+          height: '45rem',
           overflowY: 'auto',
         }}
         className="max-w-xl mx-auto flex justify-center"

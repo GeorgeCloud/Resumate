@@ -17,7 +17,7 @@ export default function Personal() {
   }
   return (
     <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Personal Detail</h2>
+      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Personal Information</h2>
       <div className="row mb-2">
         <div className="col1 px-6">
           <label htmlFor="firstName">
