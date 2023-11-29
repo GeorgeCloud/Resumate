@@ -19,7 +19,8 @@ export default function Stack() {
     }));
   }
 
-  function handleAddEntry(category: keyof StackDataType) {
+  function handleAddEntry(category: keyof StackDataType, event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
     setFormData((prevData) => ({
       ...prevData,
       stackData: {
@@ -53,7 +54,7 @@ export default function Stack() {
             onChange={(e) => handleInputChange('languages', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={() => handleAddEntry('languages')}>Add</button>
+          <button onClick={(e) => handleAddEntry('languages', e)}>Add</button>
         </div>
       </div>
 
@@ -72,7 +73,7 @@ export default function Stack() {
             onChange={(e) => handleInputChange('frameworks', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={() => handleAddEntry('frameworks')}>Add</button>
+          <button onClick={(e) => handleAddEntry('frameworks', e)}>Add</button>
         </div>
       </div>
 
@@ -91,7 +92,7 @@ export default function Stack() {
             onChange={(e) => handleInputChange('developer_tools', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={() => handleAddEntry('developer_tools')}>Add</button>
+          <button onClick={(e) => handleAddEntry('developer_tools', e)}>Add</button>
         </div>
       </div>
 
@@ -110,7 +111,7 @@ export default function Stack() {
             onChange={(e) => handleInputChange('libraries', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={() => handleAddEntry('libraries')}>Add</button>
+          <button onClick={(e) => handleAddEntry('libraries', e)}>Add</button>
         </div>
       </div>
     </div>
