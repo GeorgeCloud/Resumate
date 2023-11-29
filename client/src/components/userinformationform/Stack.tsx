@@ -1,102 +1,116 @@
-import { ChangeEvent } from 'react';
+import { useState } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
-import type { StackDataType, FormDataType } from '../../lib/types';
-
+import type { StackDataType } from '../../lib/types';
 
 export default function Stack() {
-  const { formData, setFormData } = useFormContext();
-  const {
-    languages,
-    frameworks,
-    developer_tools,
-    libraries
-  } = formData.stackData;
+  const { setFormData } = useFormContext();
 
-  const handleArrayInputChange = (
-    field: keyof StackDataType,
-    index: number
-  ) => (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+  const [inputValues, setInputValues] = useState({
+    languages: '',
+    frameworks: '',
+    developer_tools: '',
+    libraries: ''
+  });
 
-    const updateFormData = function updateForm(prev: FormDataType) {
-      const updatedStackData = { ...prev.stackData };
-      const stackDataProperty = updatedStackData[field];
-      if (Array.isArray(stackDataProperty)) {
-        stackDataProperty[index] = value;
-      }
-      const newStackData = { ...prev, stackData: updatedStackData };
+  function handleInputChange(category: keyof StackDataType, value: string) {
+    setInputValues((previousValues) => ({
+      ...previousValues,
+      [category]: value
+    }));
+  }
 
-      return newStackData;
-    }
-
-    setFormData(updateFormData);
+  function handleAddEntry(category: keyof StackDataType) {
+    setFormData((prevData) => ({
+      ...prevData,
+      stackData: {
+        ...prevData.stackData,
+        [category]: [...prevData.stackData[category], inputValues[category]],
+      },
+    }));
+    // Clear the input value after adding data to array
+    setInputValues((prevValues) => ({
+      ...prevValues,
+      [category]: '',
+    }));
   }
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Stack Information</h2>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="languages">Languages</label>
+    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
+      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Stack Form</h2>
+
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="languages" className="text-sm/4">
+            Languages
+          </label>
         </div>
         <div className="col2 flex justify-center">
-          {languages.map((language, index) => (
-            <input
-              key={index}
-              type="text"
-              className="rounded-md"
-              value={language}
-              onChange={handleArrayInputChange('languages', index)}
-            />
-          ))}
+          <input
+            id="languages"
+            name="languages"
+            type="text"
+            value={inputValues.languages}
+            onChange={(e) => handleInputChange('languages', e.target.value)}
+            className="p-2 border rounded-md"
+          />
+          <button onClick={() => handleAddEntry('languages')}>Add</button>
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="frameworks">Frameworks</label>
+
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="frameworks" className="text-sm/4">
+            Frameworks
+          </label>
         </div>
         <div className="col2 flex justify-center">
-          {frameworks.map((framework, index) => (
-            <input
-              key={index}
-              type="text"
-              className="rounded-md"
-              value={framework}
-              onChange={handleArrayInputChange('frameworks', index)}
-            />
-          ))}
+          <input
+            id="frameworks"
+            name="frameworks"
+            type="text"
+            value={inputValues.frameworks}
+            onChange={(e) => handleInputChange('frameworks', e.target.value)}
+            className="p-2 border rounded-md"
+          />
+          <button onClick={() => handleAddEntry('frameworks')}>Add</button>
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="developer_tools">Developer Tools</label>
+
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="developer_tools" className="text-sm/4">
+            Developer Tools
+          </label>
         </div>
         <div className="col2 flex justify-center">
-          {developer_tools.map((tool, index) => (
-            <input
-              key={index}
-              type="text"
-              className="rounded-md"
-              value={tool}
-              onChange={handleArrayInputChange('developer_tools', index)}
-            />
-          ))}
+          <input
+            id="developer_tools"
+            name="developer_tools"
+            type="text"
+            value={inputValues.developer_tools}
+            onChange={(e) => handleInputChange('developer_tools', e.target.value)}
+            className="p-2 border rounded-md"
+          />
+          <button onClick={() => handleAddEntry('developer_tools')}>Add</button>
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="libraries">Libraries</label>
+
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="libraries" className="text-sm/4">
+            Libraries
+          </label>
         </div>
         <div className="col2 flex justify-center">
-          {libraries.map((library, index) => (
-            <input
-              key={index}
-              type="text"
-              className="rounded-md"
-              value={library}
-              onChange={handleArrayInputChange('libraries', index)}
-            />
-          ))}
+          <input
+            id="libraries"
+            name="libraries"
+            type="text"
+            value={inputValues.libraries}
+            onChange={(e) => handleInputChange('libraries', e.target.value)}
+            className="p-2 border rounded-md"
+          />
+          <button onClick={() => handleAddEntry('libraries')}>Add</button>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ export default function UserInfoForm() {
       }
     }
   }
-  
+
   function handlePrev() {
     if (currentPageObj) {
       const prevPageObj = pages.find((p) => p.id === currentPageObj?.id - 1);
@@ -81,9 +81,9 @@ export default function UserInfoForm() {
           height: '45rem',
           overflowY: 'auto',
         }}
-        className="max-w-xl mx-auto flex justify-center"
+        className="max-w-3xl mx-auto flex justify-center"
       >
-        <form action="POST">
+        <form action="POST" className="max-w-2xl">
           {currentPageObj?.component}
         </form>
       </div>

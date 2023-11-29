@@ -14,11 +14,11 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-between justify-start">
 
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="title" className="flex justify-between">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="title" className="text-sm/4">
             Title
           </label>
         </div>
@@ -33,9 +33,9 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="companyName" className="flex justify-between">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="companyName" className="text-sm/4">
             Company Name
           </label>
         </div>
@@ -50,9 +50,9 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="startDate" className="flex justify-between">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="startDate" className="text-sm/4">
             Start Date
           </label>
         </div>
@@ -67,9 +67,9 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="endDate" className="flex justify-between">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="endDate" className="text-sm/4">
             End Date
           </label>
         </div>
@@ -84,9 +84,9 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="cityState" className="flex justify-between">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="cityState" className="text-sm/4">
             City & State
           </label>
         </div>
@@ -98,6 +98,54 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
             name="cityState"
             value={entry.cityState}
             onChange={(e) => handleInputChange('cityState', e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="contribution1" className="text-sm/4">
+            Contribution 1
+          </label>
+        </div>
+        <div className="col2 flex justify-center">
+          <textarea
+            className="rounded-md"
+            id="contribution1"
+            name="contribution1"
+            value={entry.contribution1}
+            onChange={(e) => handleInputChange('contribution1', e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="contribution2" className="text-sm/4">
+            Contribution 2
+          </label>
+        </div>
+        <div className="col2 flex justify-center">
+          <textarea
+            className="rounded-md"
+            id="contribution2"
+            name="contribution2"
+            value={entry.contribution2}
+            onChange={(e) => handleInputChange('contribution2', e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="contribution3" className="text-sm/4">
+            Contribution 3
+          </label>
+        </div>
+        <div className="col2 flex justify-center">
+          <textarea
+            className="rounded-md"
+            id="contribution3"
+            name="contribution3"
+            value={entry.contribution3}
+            onChange={(e) => handleInputChange('contribution3', e.target.value)}
           />
         </div>
       </div>

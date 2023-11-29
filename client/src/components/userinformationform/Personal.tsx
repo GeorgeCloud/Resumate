@@ -16,11 +16,11 @@ export default function Personal() {
     });
   }
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Personal Information</h2>
-      <div className="row mb-2">
+    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
+      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Personal Information</h2>
+      <div className="row mb-4 flex justify-between">
         <div className="col1 px-6">
-          <label htmlFor="firstName">
+          <label htmlFor="firstName" className="text-sm/4">
             First Name
           </label>
         </div>
@@ -35,9 +35,9 @@ export default function Personal() {
           />
         </div>
       </div>
-      <div className="row mb-2">
+      <div className="row mb-4 flex justify-between">
         <div className="col1 px-6">
-          <label htmlFor="lastName">
+          <label htmlFor="lastName" className="text-sm/4">
             Last Name
           </label>
         </div>
@@ -52,9 +52,9 @@ export default function Personal() {
           />
         </div>
       </div>
-      <div className="row mb-2">
+      <div className="row mb-4 flex justify-between">
         <div className="col1 px-6">
-          <label htmlFor="phoneNumber">
+          <label htmlFor="phoneNumber" className="text-sm/4">
             Phone No.
           </label>
         </div>
@@ -69,9 +69,9 @@ export default function Personal() {
           />
         </div>
       </div>
-      <div className="row mb-2">
+      <div className="row mb-4 flex justify-between">
         <div className="col1 px-6">
-          <label htmlFor="email">
+          <label htmlFor="email" className="text-sm/4">
             Email Address
           </label>
         </div>
@@ -86,9 +86,9 @@ export default function Personal() {
           />
         </div>
       </div>
-      <div className="row mb-2">
+      <div className="row mb-4 flex justify-between">
         <div className="col1 px-6">
-          <label htmlFor="linkedIn">
+          <label htmlFor="linkedIn" className="text-sm/4">
             LinkedIn Username
           </label>
         </div>
@@ -103,9 +103,9 @@ export default function Personal() {
           />
         </div>
       </div>
-      <div className="row mb-2">
+      <div className="row mb-4 flex justify-between">
         <div className="col1 px-6">
-          <label htmlFor="github">
+          <label htmlFor="github" className="text-sm/4">
             Github Username
           </label>
         </div>
@@ -120,9 +120,9 @@ export default function Personal() {
           />
         </div>
       </div>
-      <div className="row mb-2">
+      <div className="row mb-4 flex justify-between">
         <div className="col1 px-6">
-          <label htmlFor="title">
+          <label htmlFor="title" className="text-sm/4">
             Title
           </label>
         </div>

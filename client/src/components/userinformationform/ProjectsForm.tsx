@@ -15,8 +15,8 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
 
   return (
     <div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
           <label htmlFor="projectTitle" className="flex justify-between">
             Project Title
           </label>
@@ -32,8 +32,8 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
           <label htmlFor="url" className="flex justify-between">
             URL
           </label>
@@ -49,8 +49,8 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
           <label htmlFor="description" className="flex justify-between">
             Description
           </label>
@@ -66,8 +66,8 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
           <label htmlFor="startDate" className="flex justify-between">
             Start Date
           </label>
@@ -83,8 +83,8 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
           <label htmlFor="endDate" className="flex justify-between">
             End Date
           </label>

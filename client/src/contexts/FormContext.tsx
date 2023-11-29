@@ -30,14 +30,20 @@ export function FormProvider({ children }: ContextPropsType) {
       companyName: '',
       startDate: '',
       endDate: '',
-      cityState: ''
+      cityState: '',
+      contribution1: '',
+      contribution2: '',
+      contribution3: ''
     }],
     projectsData: [{
       projectTitle: '',
       url: '',
       description: '',
       startDate: '',
-      endDate: ''
+      endDate: '',
+      contribution1: '',
+      contribution2: '',
+      contribution3: ''
     }],
     stackData: {
       languages: [],

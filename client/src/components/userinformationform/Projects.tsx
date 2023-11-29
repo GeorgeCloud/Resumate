@@ -47,8 +47,8 @@ export default function Projects() {
   }, [formData.projectsData.length]);
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Projects Information</h2>
+    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
+      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Projects Information</h2>
       <div>
         <button onClick={handleAddEntry}><PiPlusBold /></button>
         {formData.projectsData.map((entry, index) => (

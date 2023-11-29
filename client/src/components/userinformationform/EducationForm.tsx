@@ -16,9 +16,9 @@ export default function EducationForm({ entry, index }: { entry: EducationDataTy
   return (
     <div>
 
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="schoolName">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="schoolName" className="text-sm/4">
             School Name
           </label>
         </div>
@@ -33,9 +33,9 @@ export default function EducationForm({ entry, index }: { entry: EducationDataTy
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="cityState" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="cityState" className="text-sm/4">
             City & State
           </label>
         </div>
@@ -50,9 +50,9 @@ export default function EducationForm({ entry, index }: { entry: EducationDataTy
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="degreeTitle" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="degreeTitle" className="text-sm/4">
             Degree Title
           </label>
         </div>
@@ -67,9 +67,9 @@ export default function EducationForm({ entry, index }: { entry: EducationDataTy
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="startDate" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="startDate" className="text-sm/4">
             Start Date
           </label>
         </div>
@@ -84,9 +84,9 @@ export default function EducationForm({ entry, index }: { entry: EducationDataTy
           />
         </div>
       </div>
-      <div className="row mb-4">
-        <div className="col1 px-6">
-          <label htmlFor="endDate" className="flex justify-between text-sm/4 ml-2">
+      <div className="row mb-4 flex justify-between">
+        <div className="col1">
+          <label htmlFor="endDate" className="text-sm/4">
             End Date
           </label>
         </div>

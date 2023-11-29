@@ -13,7 +13,10 @@ export default function Professional() {
       companyName: '',
       startDate: '',
       endDate: '',
-      cityState: ''
+      cityState: '',
+      contribution1: '',
+      contribution2: '',
+      contribution3: ''
     };
 
     setFormData({
@@ -38,7 +41,10 @@ export default function Professional() {
               companyName: '',
               startDate: '',
               endDate: '',
-              cityState: ''
+              cityState: '',
+              contribution1: '',
+              contribution2: '',
+              contribution3: ''
             }
             : item;
         })
@@ -49,8 +55,8 @@ export default function Professional() {
 
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl">Professional Information</h2>
+    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
+      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Professional Information</h2>
       <div>
         <button onClick={handleAddEntry}><PiPlusBold /></button>
         {formData.professionalData.map((entry, index) => (
