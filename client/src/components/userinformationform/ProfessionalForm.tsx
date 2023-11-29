@@ -1,17 +1,18 @@
 import { useFormContext } from '../../contexts/FormContext';
 import type { ProfessionalDataType } from '../../lib/types';
 
-export default function ProfessionalForm({ entry }: { entry: ProfessionalDataType }) {
+export default function ProfessionalForm({ entry, index }: { entry: ProfessionalDataType, index: number }) {
   const { setFormData } = useFormContext();
 
   function handleInputChange(field: string, value: string) {
     setFormData((prevData) => ({
       ...prevData,
-      professionalData: prevData.professionalData.map((item) =>
-        item === entry ? { ...item, [field]: value } : item
+      professionalData: prevData.professionalData.map((item, i) =>
+        i === index ? { ...item, [field]: value } : item
       ),
     }));
   };
+
   return (
     <div>
 

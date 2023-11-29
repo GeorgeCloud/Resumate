@@ -19,6 +19,7 @@ export type ContextPropsType = {
 }
 
 export type EducationDataType = {
+  index?: number;
   schoolName: string;
   cityState: string;
   degreeTitle: string;
@@ -27,6 +28,7 @@ export type EducationDataType = {
 }
 
 export type ProfessionalDataType = {
+  index?: number;
   title: string;
   companyName: string;
   startDate: string;
@@ -35,6 +37,7 @@ export type ProfessionalDataType = {
 }
 
 export type ProjectsDataType = {
+  index?: number;
   projectTitle: string;
   url: string;
   description: string;

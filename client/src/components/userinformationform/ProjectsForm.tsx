@@ -1,14 +1,14 @@
 import { useFormContext } from '../../contexts/FormContext';
 import type { ProjectsDataType } from '../../lib/types';
 
-export default function ProjectsForm({ entry }: { entry: ProjectsDataType }) {
+export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType, index: number }) {
   const { setFormData } = useFormContext();
 
   function handleInputChange(field: string, value: string) {
     setFormData((prevData) => ({
       ...prevData,
-      projectsData: prevData.projectsData.map((item) =>
-        item === entry ? { ...item, [field]: value } : item
+      projectsData: prevData.projectsData.map((item, i) =>
+        i === index ? { ...item, [field]: value } : item
       ),
     }));
   };

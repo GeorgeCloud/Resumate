@@ -1,14 +1,14 @@
 import { useFormContext } from '../../contexts/FormContext';
 import type { EducationDataType } from '../../lib/types';
 
-export default function EducationForm({ entry }: { entry: EducationDataType }) {
+export default function EducationForm({ entry, index }: { entry: EducationDataType, index: number }) {
   const { setFormData } = useFormContext();
 
   function handleInputChange(field: string, value: string) {
     setFormData((prevData) => ({
       ...prevData,
-      educationData: prevData.educationData.map((item) =>
-        item === entry ? { ...item, [field]: value } : item
+      educationData: prevData.educationData.map((item, i) =>
+        i === index ? { ...item, [field]: value } : item
       ),
     }));
   }
