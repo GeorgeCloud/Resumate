@@ -1,4 +1,5 @@
 import { useFormContext } from '../../contexts/FormContext';
+import ContributionInput from './ContributionInput';
 import type { ProfessionalDataType } from '../../lib/types';
 
 export default function ProfessionalForm({ entry, index }: { entry: ProfessionalDataType, index: number }) {
@@ -12,6 +13,21 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
       ),
     }));
   };
+
+  function handleAddContribution(contribution: string) {
+    setFormData((prevData) => ({
+      ...prevData,
+      professionalData: prevData.professionalData.map((item, i) => {
+        if (i === index) {
+          return {
+            ...item,
+            contributions: [...(item.contributions || []), contribution]
+          };
+        }
+        return item;
+      })
+    }));
+  }
 
   return (
     <div className="flex flex-col items-between justify-start">
@@ -101,55 +117,7 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           />
         </div>
       </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="contribution1" className="text-sm/4">
-            Contribution 1
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <textarea
-            className="rounded-md"
-            id="contribution1"
-            name="contribution1"
-            value={entry.contribution1}
-            onChange={(e) => handleInputChange('contribution1', e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="contribution2" className="text-sm/4">
-            Contribution 2
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <textarea
-            className="rounded-md"
-            id="contribution2"
-            name="contribution2"
-            value={entry.contribution2}
-            onChange={(e) => handleInputChange('contribution2', e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="contribution3" className="text-sm/4">
-            Contribution 3
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <textarea
-            className="rounded-md"
-            id="contribution3"
-            name="contribution3"
-            value={entry.contribution3}
-            onChange={(e) => handleInputChange('contribution3', e.target.value)}
-          />
-        </div>
-      </div>
-
+      <ContributionInput onAddContribution={handleAddContribution} />
     </div>
   );
 }

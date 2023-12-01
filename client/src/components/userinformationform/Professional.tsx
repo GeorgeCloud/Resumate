@@ -55,10 +55,15 @@ export default function Professional() {
 
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
+    <div className="">
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Professional Information</h2>
       <div>
-        <button onClick={handleAddEntry}><PiPlusBold /></button>
+        <div className="w-full flex justify-end items-baseline py-2">
+          <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Job</span>
+          <button onClick={handleAddEntry} className="add-entry-button">
+            <PiPlusBold />
+          </button>
+        </div>
         {formData.professionalData.map((entry, index) => (
           <ProfessionalForm key={index} entry={entry} index={index} />
         ))}

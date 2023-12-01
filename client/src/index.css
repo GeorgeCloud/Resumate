@@ -50,11 +50,20 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 h1 {
@@ -83,11 +92,22 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.add-entry-button {
+  border: 1px solid transparent;
+  font-size: .75em;
+  font-weight: 400;
+  background-color: var(--primary);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+}
 
 .col1 {
   text-align: left;
   float: left;
-  width: 35%;
+  width: 25%;
   margin-top: 0.3rem;
 }
 
@@ -103,7 +123,7 @@ input[type=url],
 input[type=tel],
 select,
 textarea {
-  width: 80%;
+  width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--primary);
   border-radius: 0.25rem;
@@ -111,7 +131,7 @@ textarea {
 }
 
 label {
-  padding: 0.25rem 0.25rem 0.25rem 0;
+  /* padding: 0.25rem 0.25rem 0.25rem 0; */
   display: inline-block;
   width: 100%;
 }

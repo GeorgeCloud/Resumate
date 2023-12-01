@@ -15,7 +15,7 @@ export default function Summary({ formData }: { formData: FormDataType }) {
         <ul>
           {Object.entries(data).map(([key, value], index) => (
             <li key={index} className="mb-2">
-              <strong>{key}:</strong> {renderNestedData(value)}
+              <strong className="text-xs tracking-tight subpixel-antialiased">{key}:</strong> {renderNestedData(value)}
             </li>
           ))}
         </ul>
@@ -26,8 +26,10 @@ export default function Summary({ formData }: { formData: FormDataType }) {
   };
 
   return (
-    <div>
-      <h2 className="text-lg underline">Summary of Information</h2>
+    <div className="" style={{
+      overflowY: 'scroll'
+    }}>
+      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Summary</div>
       {renderNestedData(formData)}
     </div>
   );

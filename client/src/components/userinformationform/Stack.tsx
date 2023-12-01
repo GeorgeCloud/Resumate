@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
 import type { StackDataType } from '../../lib/types';
+import { PiPlusBold } from "react-icons/pi";
 
 export default function Stack() {
   const { setFormData } = useFormContext();
@@ -36,8 +37,8 @@ export default function Stack() {
   }
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Stack Form</h2>
+    <div>
+      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Stack Information</h2>
 
       <div className="row mb-4 flex justify-between">
         <div className="col1">
@@ -52,10 +53,18 @@ export default function Stack() {
             type="text"
             value={inputValues.languages}
             onChange={(e) => handleInputChange('languages', e.target.value)}
-            className="p-2 border rounded-md"
+            className="rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('languages', e)}>Add</button>
         </div>
+      </div>
+
+      <div className="w-full flex justify-end mb-4">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Language</span>
+        <button
+          onClick={(e) => handleAddEntry('languages', e)}
+          className="add-entry-button">
+          <PiPlusBold />
+        </button>
       </div>
 
       <div className="row mb-4 flex justify-between">
@@ -73,8 +82,14 @@ export default function Stack() {
             onChange={(e) => handleInputChange('frameworks', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('frameworks', e)}>Add</button>
         </div>
+      </div>
+
+      <div className="w-full flex justify-end mb-4">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Framework</span>
+        <button onClick={(e) => handleAddEntry('frameworks', e)} className="add-entry-button">
+          <PiPlusBold />
+        </button>
       </div>
 
       <div className="row mb-4 flex justify-between">
@@ -92,8 +107,14 @@ export default function Stack() {
             onChange={(e) => handleInputChange('developer_tools', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('developer_tools', e)}>Add</button>
         </div>
+      </div>
+
+      <div className="w-full flex justify-end mb-4">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Tool</span>
+        <button onClick={(e) => handleAddEntry('developer_tools', e)} className="add-entry-button">
+          <PiPlusBold />
+        </button>
       </div>
 
       <div className="row mb-4 flex justify-between">
@@ -111,9 +132,15 @@ export default function Stack() {
             onChange={(e) => handleInputChange('libraries', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('libraries', e)}>Add</button>
         </div>
       </div>
+      <div className="w-full flex justify-end mb-4">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Library</span>
+        <button onClick={(e) => handleAddEntry('libraries', e)} className="add-entry-button">
+          <PiPlusBold />
+        </button>
+      </div>
+
     </div>
   );
 }

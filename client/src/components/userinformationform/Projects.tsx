@@ -47,10 +47,15 @@ export default function Projects() {
   }, [formData.projectsData.length]);
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Projects Information</h2>
+    <div className="">
+      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Projects Information</div>
       <div>
-        <button onClick={handleAddEntry}><PiPlusBold /></button>
+        <div className="w-full flex justify-end items-baseline py-2">
+          <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Project</span>
+          <button onClick={handleAddEntry} className="add-entry-button">
+            <PiPlusBold />
+          </button>
+        </div>
         {formData.projectsData.map((entry, index) => (
           <ProjectsForm key={index} entry={entry} index={index} />
         ))}

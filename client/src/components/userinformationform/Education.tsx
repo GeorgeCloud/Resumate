@@ -47,10 +47,15 @@ export default function Education() {
   }, [formData.educationData.length]);
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Education Information</h2>
+    <div className="">
+      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Education Information</div>
       <div>
-        <button onClick={handleAddEntry}><PiPlusBold /></button>
+        <div className="w-full flex justify-end items-baseline py-2">
+          <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Institution</span>
+          <button onClick={handleAddEntry} className="add-entry-button">
+            <PiPlusBold />
+          </button>
+        </div>
         {formData.educationData.map((entry, index) => (
           <EducationForm key={index} entry={entry} index={index} />
         ))}

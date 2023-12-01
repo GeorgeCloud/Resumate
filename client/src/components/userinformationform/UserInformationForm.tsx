@@ -75,20 +75,17 @@ export default function UserInfoForm() {
   const currentPageObj = pages.find((p) => p.name === page);
 
   return (
-    <div className="w-screen max-h-screen">
-      <div
-        style={{
-          height: '45rem',
-          overflowY: 'auto',
-        }}
-        className="max-w-3xl mx-auto flex justify-center"
-      >
-        <form action="POST" className="max-w-2xl">
+    <div className="w-full m-8">
+      <div className="border-neutral-600 border-2" style={{
+        height: '36rem',
+        overflowY: 'scroll'
+      }}>
+        <form action="POST" className="max-w-md w-full mx-auto rounded-md shadow-md p-4 m-6">
           {currentPageObj?.component}
         </form>
       </div>
-      <div className="max-w-lg mx-auto flex justify-center">
-        <div className="max-w-lg mx-auto flex justify-center">
+      <div className="flex justify-center">
+        <div className="flex justify-between items-center my-6">
           {currentPageObj?.id !== 1 && (
             <button className="mx-2 mb-4" onClick={handlePrev}>
               Previous
