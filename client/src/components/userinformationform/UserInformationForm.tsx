@@ -75,12 +75,11 @@ export default function UserInfoForm() {
   const currentPageObj = pages.find((p) => p.name === page);
 
   return (
-    <div className="w-full m-8">
-      <div className="border-neutral-600 border-2" style={{
-        height: '36rem',
-        overflowY: 'scroll'
-      }}>
-        <form action="POST" className="max-w-md w-full mx-auto rounded-md shadow-md p-4 m-6">
+    <div className="w-full m-6">
+      <div style={{ height: '35rem' }}>
+        <form
+          action="POST"
+          className="border-neutral-600 border-2 max-w-lg w-full mx-auto rounded-md shadow-md px-6 my-8 py-8">
           {currentPageObj?.component}
         </form>
       </div>

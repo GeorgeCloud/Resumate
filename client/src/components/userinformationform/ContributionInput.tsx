@@ -27,7 +27,7 @@ export default function ContributionInput({ onAddContribution }: ContributionInp
             Enter contribution
           </label>
         </div>
-        <div className="w-full flex justify-center">
+        <div className="col2 w-full flex justify-center">
           <input
             type="text"
             className="rounded-md"

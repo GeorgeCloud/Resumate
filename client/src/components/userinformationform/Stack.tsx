@@ -40,6 +40,15 @@ export default function Stack() {
     <div>
       <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Stack Information</h2>
 
+      <div className="w-full flex justify-end">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Language</span>
+        <button
+          onClick={(e) => handleAddEntry('languages', e)}
+          className="add-entry-button">
+          <PiPlusBold />
+        </button>
+      </div>
+
       <div className="row mb-4 flex justify-between">
         <div className="col1">
           <label htmlFor="languages" className="text-sm/4">
@@ -58,11 +67,9 @@ export default function Stack() {
         </div>
       </div>
 
-      <div className="w-full flex justify-end mb-4">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Language</span>
-        <button
-          onClick={(e) => handleAddEntry('languages', e)}
-          className="add-entry-button">
+      <div className="w-full flex justify-end">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Framework</span>
+        <button onClick={(e) => handleAddEntry('frameworks', e)} className="add-entry-button">
           <PiPlusBold />
         </button>
       </div>
@@ -85,9 +92,9 @@ export default function Stack() {
         </div>
       </div>
 
-      <div className="w-full flex justify-end mb-4">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Framework</span>
-        <button onClick={(e) => handleAddEntry('frameworks', e)} className="add-entry-button">
+      <div className="w-full flex justify-end">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Tool</span>
+        <button onClick={(e) => handleAddEntry('developer_tools', e)} className="add-entry-button">
           <PiPlusBold />
         </button>
       </div>
@@ -110,9 +117,9 @@ export default function Stack() {
         </div>
       </div>
 
-      <div className="w-full flex justify-end mb-4">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Tool</span>
-        <button onClick={(e) => handleAddEntry('developer_tools', e)} className="add-entry-button">
+      <div className="w-full flex justify-end">
+        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Library</span>
+        <button onClick={(e) => handleAddEntry('libraries', e)} className="add-entry-button">
           <PiPlusBold />
         </button>
       </div>
@@ -133,12 +140,6 @@ export default function Stack() {
             className="p-2 border rounded-md"
           />
         </div>
-      </div>
-      <div className="w-full flex justify-end mb-4">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Library</span>
-        <button onClick={(e) => handleAddEntry('libraries', e)} className="add-entry-button">
-          <PiPlusBold />
-        </button>
       </div>
 
     </div>
