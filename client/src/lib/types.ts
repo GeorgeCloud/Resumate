@@ -34,9 +34,7 @@ export type ProfessionalDataType = {
   startDate: string;
   endDate: string;
   cityState: string;
-  contribution1?: string;
-  contribution2?: string;
-  contribution3?: string;
+  contributions?: string[];
 }
 
 export type ProjectsDataType = {
@@ -46,9 +44,7 @@ export type ProjectsDataType = {
   description: string;
   startDate: string;
   endDate: string;
-  contribution1?: string;
-  contribution2?: string;
-  contribution3?: string;
+  contributions?: string[];
 }
 
 export type StackDataType = {
