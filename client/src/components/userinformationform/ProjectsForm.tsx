@@ -1,58 +1,19 @@
-import { useState } from 'react'
 import { useFormContext } from '../../contexts/FormContext';
-import { validateDate, validateNotEmpty } from '../../lib/utils';
-import AccomplishmentsInput from './AccomplishmentsInput';
-import type { ProjectsDataType } from '../../lib/types';
+import AccomplishmentInput from './AccomplishmentInput';
 
-export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType, index: number }) {
-  const [errors, setErrors] = useState<Record<string, string>>({});
+import type { ProjectsDataType } from '../../lib/types';
+import DatesInput from './DatesInput';
+
+export default function ProjectsForm({ entry, index, errors }: { entry: ProjectsDataType, index: number, errors: Record<string, string> }) {
   const { setFormData } = useFormContext();
 
-  function handleInputChange(field: string, value: string) {
-    let isValid = true;
-    // Switch statement validates the input based on the field
-    switch (field) {
-      case 'projectTitle':
-      case 'url':
-      case 'description':
-        isValid = validateNotEmpty(value);
-        break;
-      case 'startDate':
-      case 'endDate':
-        isValid = validateDate(value);
-        break;
-    }
-    if (isValid) {
-      setFormData((prevData) => ({
-        ...prevData,
-        projectsData: prevData.projectsData.map((item, i) =>
-          i === index ? { ...item, [field]: value } : item
-        ),
-      }));
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: '',
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: `${field} is invalid`,
-      }));
-    }
-  }
-
-  function handleAddAccomplishments(accomplishment: string) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
-      professionalData: prevData.professionalData.map((item, i) => {
-        if (i === index) {
-          return {
-            ...item,
-            accomplishments: [...(item.accomplishments || []), accomplishment]
-          };
-        }
-        return item;
-      })
+      projectsData: prevData.projectsData.map((item, i) =>
+        i === index ? { ...item, [name]: value } : item
+      )
     }));
   }
 
@@ -70,7 +31,7 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
             name="projectTitle"
             type="text"
             value={entry.projectTitle}
-            onChange={(e) => handleInputChange('projectTitle', e.target.value)}
+            onChange={handleInputChange}
             className="rounded-md"
           />
           {errors.projectTitle && <span className="error">{errors.projectTitle}</span>}
@@ -90,7 +51,7 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
             id="url"
             name="url"
             value={entry.url}
-            onChange={(e) => handleInputChange('url', e.target.value)}
+            onChange={handleInputChange}
           />
           {errors.url && <span className="error">{errors.url}</span>}
 
@@ -109,51 +70,20 @@ export default function ProjectsForm({ entry, index }: { entry: ProjectsDataType
             id="description"
             name="description"
             value={entry.description}
-            onChange={(e) => handleInputChange('description', e.target.value)}
+            onChange={handleInputChange}
           />
           {errors.description && <span className="error">{errors.description}</span>}
 
         </div>
       </div>
-      <div className="row mb-2 flex justify-between items-baseline">
-        <div className="col1">
-          <label htmlFor="startDate" className="text-sm/4">
-            Start Date
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <input
-            type="text"
-            className="rounded-md"
-            id="startDate"
-            name="startDate"
-            value={entry.startDate}
-            onChange={(e) => handleInputChange('startDate', e.target.value)}
-          />
-          {errors.startDate && <span className="error">{errors.startDate}</span>}
 
-        </div>
-      </div>
-      <div className="row mb-2 flex justify-between items-baseline">
-        <div className="col1">
-          <label htmlFor="endDate" className="text-sm/4">
-            End Date
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <input
-            type="text"
-            className="rounded-md"
-            id="endDate"
-            name="endDate"
-            value={entry.endDate}
-            onChange={(e) => handleInputChange('endDate', e.target.value)}
-          />
-          {errors.endDate && <span className="error">{errors.endDate}</span>}
-        </div>
-      </div>
-      <AccomplishmentsInput onAddAccomplishments={handleAddAccomplishments} />
+      <DatesInput
+        entry={entry}
+        handleInputChange={handleInputChange}
+        errors={errors}
+      />
 
+      <AccomplishmentInput formDataSubType='projectsData' index={index} />
       <ul>
         {entry.accomplishments?.map((accomplishment, i) => (
           <li key={i}>{accomplishment}</li>

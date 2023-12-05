@@ -11,6 +11,14 @@ export type PageComponentProps = {
   handleInputChange: (field: string, value: string) => void;
 }
 
+export type DatesDataType = {
+  startDate: string;
+  endDate: string;
+}
+
+export type AccomplishmentDataType = {
+  accomplishments: string[];
+}
 
 /******** context **********/
 
@@ -34,7 +42,7 @@ export type ProfessionalDataType = {
   startDate: string;
   endDate: string;
   cityState: string;
-  accomplishments?: string[];
+  accomplishments: string[];
 }
 
 export type ProjectsDataType = {
@@ -44,7 +52,7 @@ export type ProjectsDataType = {
   description: string;
   startDate: string;
   endDate: string;
-  accomplishments?: string[];
+  accomplishments: string[];
 }
 
 export type StackDataType = {

@@ -1,13 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
+import { validateDate, validateNotEmpty } from '../../lib/utils';
 import ProfessionalForm from './ProfessionalForm';
 import { PiPlusBold } from "react-icons/pi";
+import type { ProfessionalDataType } from '../../lib/types'
 
 export default function Professional() {
   const { formData, setFormData } = useFormContext();
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   function handleAddEntry(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
+
+    const currentEntry = formData.professionalData[formData.professionalData.length - 1];
+
+    const isValid = validateEntry(currentEntry);
+
+    if (!isValid) {
+      return;
+    }
+
     const newEntry = {
       title: '',
       companyName: '',
@@ -24,6 +36,38 @@ export default function Professional() {
         newEntry
       ]
     });
+  }
+
+  function validateEntry(entry: ProfessionalDataType): boolean {
+    let isValid = true;
+
+    for (const field in entry) {
+      if (field === 'accomplishments') continue;
+
+      const value = entry[field as keyof ProfessionalDataType];
+      if (typeof value === 'string') {
+        if (['title', 'companyName', 'cityState'].includes(field)) {
+          isValid = validateNotEmpty(value);
+        } else if (['startDate', 'endDate'].includes(field)) {
+          isValid = validateDate(value);
+        }
+
+        if (isValid) {
+          // Clear the error message
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            [field]: '',
+          }));
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            [field]: `${field} is invalid`,
+          }));
+        }
+      }
+    }
+
+    return isValid;
   }
 
   useEffect(() => {
@@ -62,7 +106,12 @@ export default function Professional() {
           </button>
         </div>
         {formData.professionalData.map((entry, index) => (
-          <ProfessionalForm key={index} entry={entry} index={index} />
+          <ProfessionalForm
+            key={index}
+            entry={entry}
+            index={index}
+            errors={errors}
+          />
         ))}
       </div>
     </div>

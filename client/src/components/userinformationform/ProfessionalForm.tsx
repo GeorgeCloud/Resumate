@@ -1,59 +1,19 @@
-import { useState } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
-import { validateDate, validateNotEmpty } from '../../lib/utils';
-import AccomplishmentsInput from './AccomplishmentsInput';
+import DatesInput from './DatesInput';
+import AccomplishmentInput from './AccomplishmentInput';
 
 import type { ProfessionalDataType } from '../../lib/types';
 
-export default function ProfessionalForm({ entry, index }: { entry: ProfessionalDataType, index: number }) {
-  const [errors, setErrors] = useState<Record<string, string>>({});
+export default function ProfessionalForm({ entry, index, errors }: { entry: ProfessionalDataType, index: number, errors: Record<string, string> }) {
   const { setFormData } = useFormContext();
 
-  function handleInputChange(field: string, value: string) {
-    let isValid = true;
-    switch (field) {
-      case 'title':
-      case 'companyName':
-      case 'cityState':
-        isValid = validateNotEmpty(value);
-        break;
-      case 'startDate':
-      case 'endDate':
-        isValid = validateDate(value);
-        break;
-    }
-    if (isValid) {
-      setFormData((prevData) => ({
-        ...prevData,
-        professionalData: prevData.professionalData.map((item, i) =>
-          i === index ? { ...item, [field]: value } : item
-        ),
-      }));
-      // Clear the error message
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: '',
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: `${field} is invalid`,
-      }));
-    }
-  };
-
-  function handleAddAccomplishments(accomplishment: string) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
-      professionalData: prevData.professionalData.map((item, i) => {
-        if (i === index) {
-          return {
-            ...item,
-            accomplishments: [...(item.accomplishments || []), accomplishment]
-          };
-        }
-        return item;
-      })
+      professionalData: prevData.professionalData.map((item, i) =>
+        i === index ? { ...item, [name]: value } : item
+      )
     }));
   }
 
@@ -73,7 +33,7 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
             id="title"
             name="title"
             value={entry.title}
-            onChange={(e) => handleInputChange('title', e.target.value)}
+            onChange={handleInputChange}
           />
           {errors.title && <span className="error">{errors.title}</span>}
         </div>
@@ -91,47 +51,16 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
             id="companyName"
             name="companyName"
             value={entry.companyName}
-            onChange={(e) => handleInputChange('companyName', e.target.value)}
+            onChange={handleInputChange}
           />
           {errors.companyName && <span className="error">{errors.companyName}</span>}
         </div>
       </div>
-      <div className="row mb-2 flex justify-between items-baseline">
-        <div className="col1">
-          <label htmlFor="startDate" className="text-sm/4">
-            Start Date
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <input
-            type="text"
-            className="rounded-md"
-            id="startDate"
-            name="startDate"
-            value={entry.startDate}
-            onChange={(e) => handleInputChange('startDate', e.target.value)}
-          />
-          {errors.startDate && <span className="error">{errors.startDate}</span>}
-        </div>
-      </div>
-      <div className="row mb-2 flex justify-between items-baseline">
-        <div className="col1">
-          <label htmlFor="endDate" className="text-sm/4">
-            End Date
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <input
-            type="text"
-            className="rounded-md"
-            id="endDate"
-            name="endDate"
-            value={entry.endDate}
-            onChange={(e) => handleInputChange('endDate', e.target.value)}
-          />
-          {errors.endDate && <span className="error">{errors.endDate}</span>}
-        </div>
-      </div>
+      <DatesInput
+        entry={entry}
+        handleInputChange={handleInputChange}
+        errors={errors}
+      />
       <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="cityState" className="text-sm/4">
@@ -145,12 +74,13 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
             id="cityState"
             name="cityState"
             value={entry.cityState}
-            onChange={(e) => handleInputChange('cityState', e.target.value)}
+            onChange={handleInputChange}
           />
           {errors.cityState && <span className="error">{errors.cityState}</span>}
         </div>
       </div>
-      <AccomplishmentsInput onAddAccomplishments={handleAddAccomplishments} />
+
+      <AccomplishmentInput formDataSubType='professionalData' index={index} />
 
       <ul>
         {entry.accomplishments?.map((accomplishment, i) => (
