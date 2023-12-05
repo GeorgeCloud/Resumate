@@ -31,7 +31,7 @@ export function FormProvider({ children }: ContextPropsType) {
       startDate: '',
       endDate: '',
       cityState: '',
-      contributions: []
+      accomplishments: []
     }],
     projectsData: [{
       projectTitle: '',
@@ -39,7 +39,7 @@ export function FormProvider({ children }: ContextPropsType) {
       description: '',
       startDate: '',
       endDate: '',
-      contributions: []
+      accomplishments: []
     }],
     stackData: {
       languages: [],

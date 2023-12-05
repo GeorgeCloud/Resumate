@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
-import ContributionInput from './ContributionInput';
+import { validateDate, validateNotEmpty } from '../../lib/utils';
+import AccomplishmentsInput from './AccomplishmentsInput';
+
 import type { ProfessionalDataType } from '../../lib/types';
 
 export default function ProfessionalForm({ entry, index }: { entry: ProfessionalDataType, index: number }) {
@@ -8,24 +10,46 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
   const { setFormData } = useFormContext();
 
   function handleInputChange(field: string, value: string) {
-    if (validateForm()) {
+    let isValid = true;
+    switch (field) {
+      case 'title':
+      case 'companyName':
+      case 'cityState':
+        isValid = validateNotEmpty(value);
+        break;
+      case 'startDate':
+      case 'endDate':
+        isValid = validateDate(value);
+        break;
+    }
+    if (isValid) {
       setFormData((prevData) => ({
         ...prevData,
         professionalData: prevData.professionalData.map((item, i) =>
           i === index ? { ...item, [field]: value } : item
         ),
       }));
+      // Clear the error message
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: '',
+      }));
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: `${field} is invalid`,
+      }));
     }
   };
 
-  function handleAddContribution(contribution: string) {
+  function handleAddAccomplishments(accomplishment: string) {
     setFormData((prevData) => ({
       ...prevData,
       professionalData: prevData.professionalData.map((item, i) => {
         if (i === index) {
           return {
             ...item,
-            contributions: [...(item.contributions || []), contribution]
+            accomplishments: [...(item.accomplishments || []), accomplishment]
           };
         }
         return item;
@@ -33,86 +57,10 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
     }));
   }
 
-  const validateDate = (date: string): boolean => {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    return dateRegex.test(date);
-  };
-
-  function validateNotEmpty(value: string, fieldName: string): boolean {
-    if (value.trim() === '') {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [fieldName]: `${fieldName} is required`,
-      }));
-      return false;
-    }
-    return true;
-  };
-
-  function validateStartDate(startDate: string): boolean {
-    if (!validateDate(startDate)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        startDate: 'Invalid Start Date',
-      }));
-      return false;
-    }
-    return true;
-  };
-
-  function validateEndDate(endDate: string): boolean {
-    if (!validateDate(endDate)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        endDate: 'Invalid End Date',
-      }));
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * @returns {Boolean} - returns true if no error is found. If errors are found, updated teh errors state and return false
-   */
-
-  function validateForm(): boolean {
-    setErrors({}); // Reset errors
-    const newErrors: Record<string, string> = {};
-
-    if (!validateNotEmpty(entry.title, 'title')) {
-      newErrors.title = 'Title is required';
-    }
-
-    if (!validateNotEmpty(entry.companyName, 'companyName')) {
-      newErrors.companyName = 'Company Name is required';
-    }
-
-    if (!validateStartDate(entry.startDate)) {
-      newErrors.startDate = 'Invalid Start Date';
-    }
-
-    if (!validateEndDate(entry.endDate)) {
-      newErrors.endDate = 'Invalid End Date';
-    }
-
-    if (!validateNotEmpty(entry.cityState, 'cityState')) {
-      newErrors.cityState = 'City State is required';
-    }
-
-    // If errors are found, update the errors state and return false
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return false;
-    }
-
-    // If no errors are found, return true
-    return true;
-  }
-
   return (
     <div className="flex flex-col items-between justify-start">
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="title" className="text-sm/4">
             Title
@@ -130,7 +78,7 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           {errors.title && <span className="error">{errors.title}</span>}
         </div>
       </div>
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="companyName" className="text-sm/4">
             Company Name
@@ -148,7 +96,7 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           {errors.companyName && <span className="error">{errors.companyName}</span>}
         </div>
       </div>
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="startDate" className="text-sm/4">
             Start Date
@@ -166,7 +114,7 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           {errors.startDate && <span className="error">{errors.startDate}</span>}
         </div>
       </div>
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="endDate" className="text-sm/4">
             End Date
@@ -184,7 +132,7 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           {errors.endDate && <span className="error">{errors.endDate}</span>}
         </div>
       </div>
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="cityState" className="text-sm/4">
             City & State
@@ -202,11 +150,11 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
           {errors.cityState && <span className="error">{errors.cityState}</span>}
         </div>
       </div>
-      <ContributionInput onAddContribution={handleAddContribution} />
+      <AccomplishmentsInput onAddAccomplishments={handleAddAccomplishments} />
 
       <ul>
-        {entry.contributions?.map((contribution, i) => (
-          <li key={i}>{contribution}</li>
+        {entry.accomplishments?.map((accomplishment, i) => (
+          <li key={i}>{accomplishment}</li>
         ))}
       </ul>
     </div>

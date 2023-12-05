@@ -27,7 +27,7 @@ export default function Summary({ formData }: { formData: FormDataType }) {
 
   return (
     <div>
-      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Summary</div>
+      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-2">Summary</div>
       {renderNestedData(formData)}
     </div>
   );

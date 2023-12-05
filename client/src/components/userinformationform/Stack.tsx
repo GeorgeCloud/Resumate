@@ -13,6 +13,13 @@ export default function Stack() {
     libraries: ''
   });
 
+  const [errors, setErrors] = useState({
+    languages: '',
+    frameworks: '',
+    developer_tools: '',
+    libraries: ''
+  });
+
   function handleInputChange(category: keyof StackDataType, value: string) {
     setInputValues((previousValues) => ({
       ...previousValues,
@@ -20,8 +27,22 @@ export default function Stack() {
     }));
   }
 
+  function validateInput(category: keyof StackDataType, value: string): boolean {
+    if (value.trim() === '') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [category]: 'This field cannot be empty',
+      }));
+      return false;
+    }
+    return true;
+  }
+
   function handleAddEntry(category: keyof StackDataType, event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
+    if (!validateInput(category, inputValues[category])) {
+      return;
+    }
     setFormData((prevData) => ({
       ...prevData,
       stackData: {
@@ -34,22 +55,18 @@ export default function Stack() {
       ...prevValues,
       [category]: '',
     }));
+    // Clear the error message
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [category]: '',
+    }));
   }
 
   return (
-    <div>
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Stack Information</h2>
-
-      <div className="w-full flex justify-end">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Language</span>
-        <button
-          onClick={(e) => handleAddEntry('languages', e)}
-          className="add-entry-button">
-          <PiPlusBold />
-        </button>
-      </div>
-
-      <div className="row mb-4 flex justify-between">
+    <div className="w-full">
+      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-2">Stack Information</div>
+      <p className="text-xs italic my-2 px-8">Please add one item at a time by clicking the button with the plus sign between each entry.</p>
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="languages" className="text-sm/4">
             Languages
@@ -64,17 +81,16 @@ export default function Stack() {
             onChange={(e) => handleInputChange('languages', e.target.value)}
             className="rounded-md"
           />
+          {errors.languages && <p className="error-message">{errors.languages}</p>}
         </div>
-      </div>
-
-      <div className="w-full flex justify-end">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Framework</span>
-        <button onClick={(e) => handleAddEntry('frameworks', e)} className="add-entry-button">
+        <button
+          onClick={(e) => handleAddEntry('languages', e)}
+          className="add-entry-button mx-2">
           <PiPlusBold />
         </button>
       </div>
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="frameworks" className="text-sm/4">
             Frameworks
@@ -89,17 +105,14 @@ export default function Stack() {
             onChange={(e) => handleInputChange('frameworks', e.target.value)}
             className="p-2 border rounded-md"
           />
+          {errors.frameworks && <p className="error-message">{errors.frameworks}</p>}
         </div>
-      </div>
-
-      <div className="w-full flex justify-end">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Tool</span>
-        <button onClick={(e) => handleAddEntry('developer_tools', e)} className="add-entry-button">
+        <button onClick={(e) => handleAddEntry('frameworks', e)} className="add-entry-button mx-2">
           <PiPlusBold />
         </button>
       </div>
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="developer_tools" className="text-sm/4">
             Developer Tools
@@ -114,17 +127,14 @@ export default function Stack() {
             onChange={(e) => handleInputChange('developer_tools', e.target.value)}
             className="p-2 border rounded-md"
           />
+          {errors.developer_tools && <p className="error-message">{errors.developer_tools}</p>}
         </div>
-      </div>
-
-      <div className="w-full flex justify-end">
-        <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Library</span>
-        <button onClick={(e) => handleAddEntry('libraries', e)} className="add-entry-button">
+        <button onClick={(e) => handleAddEntry('developer_tools', e)} className="add-entry-button mx-2">
           <PiPlusBold />
         </button>
       </div>
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="libraries" className="text-sm/4">
             Libraries
@@ -139,7 +149,11 @@ export default function Stack() {
             onChange={(e) => handleInputChange('libraries', e.target.value)}
             className="p-2 border rounded-md"
           />
+          {errors.libraries && <p className="error-message">{errors.libraries}</p>}
         </div>
+        <button onClick={(e) => handleAddEntry('libraries', e)} className="add-entry-button mx-2">
+          <PiPlusBold />
+        </button>
       </div>
 
     </div>

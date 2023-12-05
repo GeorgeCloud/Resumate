@@ -47,9 +47,11 @@ export default function Education() {
   }, [formData.educationData.length]);
 
   return (
-    <div className="">
-      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Education Information</div>
+    <div className="w-full">
+      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-2">Education Information</div>
       <div>
+        <p className="text-xs italic subpixel-antialiased my-2 px-8">Click the &apos;Add Institution&apos; button to add an additional institution.</p>
+
         <div className="w-full flex justify-end items-baseline py-2">
           <span className="mt-2 text-xs tracking-tight italic subpixel-antialiased mr-2">Add Institution</span>
           <button onClick={handleAddEntry} className="add-entry-button">
