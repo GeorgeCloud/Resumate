@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormContext } from '../../contexts/FormContext';
+import React, { useState } from 'react';
 import SaveFormButton from './SaveFormButton';
 import Personal from './Personal';
 import Education from './Education';
@@ -33,6 +34,18 @@ import type { PageType, FormDataType } from '../../lib/types';
  *
  */
 
+ function validateObjectValuesNotEmpty(obj) {
+   return Object.values(obj).every(Boolean);
+ }
+
+function formIsValid(currentPage, sectionData) {
+  if (!currentPage.allowMultipleEntries){
+    return validateObjectValuesNotEmpty(sectionData)
+  }
+
+  return sectionData.every(obj => validateObjectValuesNotEmpty(obj));
+}
+
 export default function UserInformationForm() {
   const navigate = useNavigate();
   const { page } = useParams();
@@ -40,10 +53,16 @@ export default function UserInformationForm() {
 
   function handleNext() {
     if (currentPageObj) {
-      const nextPageObj = pages.find((p) => p.id === currentPageObj?.id + 1);
-      if (nextPageObj) {
-        navigate(`/form/${nextPageObj.name}`);
-        nextPage(formData as FormDataType);
+      const sectionData = formData[currentPageObj.dataType];
+
+      if (formIsValid(currentPageObj, sectionData)){
+        const nextPageObj = pages.find((p) => p.id === currentPageObj?.id + 1);
+        if (nextPageObj) {
+          navigate(`/form/${nextPageObj.name}`);
+          nextPage(formData as FormDataType);
+        }
+      } else {
+        alert('Section is not complete')
       }
     }
   }
@@ -62,37 +81,44 @@ export default function UserInformationForm() {
     {
       id: 1,
       name: 'personal',
-      component: <Personal />
+      dataType: 'personalData',
+      component: <Personal />,
+      allowMultipleEntries: false,
     },
     {
       id: 2,
       name: 'education',
+      dataType: 'educationData',
       component: <Education />,
-      allowMultipleEntries: true
+      allowMultipleEntries: true,
     },
     {
       id: 3,
       name: 'professional',
+      dataType: 'professionalData',
       component: <Professional />,
-      allowMultipleEntries: true
-
+      allowMultipleEntries: true,
     },
     {
       id: 4,
       name: 'projects',
+      dataType: 'projectsData',
       component: <Projects />,
-      allowMultipleEntries: true
+      allowMultipleEntries: true,
 
     },
     {
       id: 5,
       name: 'stack',
-      component: <Stack />
+      dataType: 'stackData',
+      component: <Stack />,
     },
     {
       id: 6,
       name: 'summary',
+      dataType: 'summaryData',
       component: <Summary formData={formData} />,
+      allowMultipleEntries: false,
     }
   ];
 

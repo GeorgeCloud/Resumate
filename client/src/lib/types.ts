@@ -3,6 +3,7 @@
 export interface PageType {
   id: number;
   name: string;
+  dataType: string;
   component: JSX.Element;
   allowMultipleEntries?: boolean;
 };

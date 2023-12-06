@@ -42,47 +42,7 @@ export default function Personal() {
         [field]: value
       },
     };
-
-    // Validate the updated form data
-    const isValid = validateEntry(updatedFormData.personalData);
-
-    if (isValid) {
-      // If the updated form data is valid, update the formData state
-      setFormData(updatedFormData);
-
-      // Clear the error message
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: '',
-      }));
-    }
-  }
-
-  function validateEntry(entry: PersonalDataType): boolean {
-    let isValid = true;
-
-    for (const field in entry) {
-      const value = entry[field as keyof PersonalDataType];
-      if (typeof value === 'string') {
-        if (['firstName', 'lastName', 'phoneNumber', 'email', 'linkedIn', 'github', 'title'].includes(field)) {
-          isValid = validateNotEmpty(value);
-        }
-
-        if (isValid) {
-          // Clear the error message
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            [field]: '',
-          }));
-        } else {
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            [field]: `${field} is invalid`,
-          }));
-        }
-      }
-    }
-    return isValid;
+    setFormData(updatedFormData)
   }
 
   return (
