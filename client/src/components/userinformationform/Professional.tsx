@@ -9,6 +9,31 @@ export default function Professional() {
   const { formData, setFormData } = useFormContext();
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  /**
+   * The Professional component.
+   *
+   * This component renders the professional information page of the form.
+   *
+   * It uses the `useFormContext` hook to access and update the form data.
+   *
+   * The `handleAddEntry` function is used to add a new entry to the professional
+   * data. In order to add a new blank entry to the form data, the current entry
+   * will be validated first using the validateEntry function. If the current
+   * entry is valid, then it will create a new entry with empty fields and adds
+   * it to the `professionalData` array in the form data, ready to be written to.
+   *
+   * The `validateEntry` function checks each field in the entry. If a field is
+   * empty or invalid, it returns `false`. Otherwise, it returns `true`. It
+   * specifically checks the 'title', 'companyName', and the `cityState` fields
+   * to ensure they are not empty, and the 'startDate' and 'endDate' fields to
+   * ensure they are valid dates.
+   *
+   * The format for a valid date is YEAR-MONTH-DAY, where year is four
+   * characters, and the month and day are each two (XXXX-XX-XX).
+   *
+   * @returns Professional
+   */
+
   function handleAddEntry(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 

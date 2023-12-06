@@ -1,14 +1,36 @@
 import { useState, ChangeEvent } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
 import { PiPlusBold } from "react-icons/pi";
-import type { FormDataType } from '../../lib/types';
+import type { AccomplishmentInputProps } from '../../lib/types';
 
-interface AccomplishmentInputProps {
-  formDataSubType: keyof FormDataType;
-  index: number;
-}
+/**
+ * The AccomplishmentInput component.
+ *
+ * This component renders an input field for a new accomplishment to be
+ * entered, and a button to add that new accomplishment to the list of
+ * accomplishments on the `formDataSubType`.
+ *
+ * It takes the `formDataSubType` and `index` props to identify the current
+ * entry in the form data state.
+ *
+ * The `newAccomplishment` state variable stores the current value of the new
+ * accomplishment input field.
+ *
+ * The `handleInputChange` function is used to handle changes to the new
+ * accomplishment input field. It updates the `newAccomplishment` state
+ * variable with the new value of the input field.
+ *
+ * The `handleAccomplishmentUpdate` function is used to handle the click event
+ * of the add button. It first checks if the new accomplishment is not empty.
+ * If it is not, it adds the new accomplishment to the list of accomplishments
+ * in the form data and clears the new accomplishment input field.
+ *
+ * @param {keyof FormDataType, number}
+ * @return AccomplishmentInput,
+ * `handleAccomplishmentUpdate` Button
+ */
 
-export default function AccomplishmentInput({ formDataSubType, index }: AccomplishmentInputProps) {
+export default function AccomplishmentInput({ formDataSubType, index }: AccomplishmentInputProps): JSX.Element {
   const [newAccomplishment, setNewAccomplishment] = useState('');
 
   const { setFormData } = useFormContext();
@@ -36,7 +58,7 @@ export default function AccomplishmentInput({ formDataSubType, index }: Accompli
   }
 
   return (
-    <section>
+    <>
       <div className="row mb-4 flex justify-between">
         <div className="col1">
           <label htmlFor="accomplishments" className="text-sm/4">
@@ -60,6 +82,6 @@ export default function AccomplishmentInput({ formDataSubType, index }: Accompli
           <PiPlusBold />
         </button>
       </div>
-    </section>
+    </>
   );
 };

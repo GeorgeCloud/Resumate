@@ -4,6 +4,42 @@ import AccomplishmentInput from './AccomplishmentInput';
 import type { ProjectsDataType } from '../../lib/types';
 import DatesInput from './DatesInput';
 
+/**
+ * The ProjectsForm component.
+ *
+ * This component renders a single project entry form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The form data for the current entry and the error messages for each field
+ * are stored in the `entry` prop and the `errors` state variable, respectively.
+ *
+ * The `handleInputChange` function is used to handle changes to the input
+ * fields. It first validates the input using the `validateInput` function, and
+ * then updates the form data and clears the error message for the updated
+ * field.
+ *
+ * The `validateInput` function checks if the input is empty. If it is, it sets
+ * an error message for the field and returns `false`. Otherwise, it returns
+ * `true`.
+ *
+ * The `DatesInput` component is used to handle the input for the start and end
+ * dates. It takes the `entry`, `handleInputChange`, and `errors` props to
+ * manage the dates for the current entry.
+ *
+ * The `AccomplishmentInput` component is used to handle the input for the
+ * accomplishments field. It takes the `formDataSubType` and `index` props to
+ * identify the current entry in the form data.
+ *
+ * As the user adds accomplishments to the array, the list is displayed
+ * to help track what they have added or not added. When the `Next` page is
+ * clicked, the form data will be updated with all items from the displayed
+ * list.
+ *
+ * @returns ProjectsForm
+ */
+
+
 export default function ProjectsForm({ entry, index, errors }: { entry: ProjectsDataType, index: number, errors: Record<string, string> }) {
   const { setFormData } = useFormContext();
 

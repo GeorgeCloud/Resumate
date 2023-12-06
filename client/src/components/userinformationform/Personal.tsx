@@ -6,8 +6,7 @@ import { PersonalDataType } from '../../lib/types';
 /**
  * The Personal component.
  *
- * This component is responsible for rendering the personal information page of
- * the form.
+ * This component renders the personal information page of the form.
  *
  * It uses the `useFormContext` hook to access and update the form data.
  *

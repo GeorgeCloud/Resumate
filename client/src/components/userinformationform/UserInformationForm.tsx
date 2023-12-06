@@ -12,8 +12,8 @@ import type { PageType, FormDataType } from '../../lib/types';
 /**
  * The UserInformationForm component.
  *
- * This component is responsible for rendering the multi-page form that takes
- * in the user's information.
+ * This component renders the multi-page form that takes in the user's
+ * information.
  *
  * It uses the `useNavigate` and `useParams` hooks from react-router-dom to
  * handle navigation.

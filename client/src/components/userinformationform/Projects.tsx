@@ -7,6 +7,31 @@ import ProjectsForm from './ProjectsForm';
 import { PiPlusBold } from "react-icons/pi";
 import type { ProjectsDataType } from '../../lib/types';
 
+/**
+ * The Projects component.
+ *
+ * This component is responsible for rendering the projects information page of
+ * the form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The `handleAddEntry` function is used to add a new entry to the projects
+ * data. In order to add a new blank entry to the form data, the current entry
+ * will be validated first using the validateEntry function. If the current
+ * entry is valid, then it will create a new entry with empty fields and adds
+ * it to the `projectsData` array in the form data, ready to be written to.
+ *
+ * The `validateEntry` function checks each field in the entry. If a field is
+ * empty or invalid, it returns `false`. Otherwise, it returns `true`. It
+ * specifically checks the 'projectTitle', 'url', 'description', 'startDate',
+ * and 'endDate' fields to ensure they are not empty, and the 'startDate' and
+ * 'endDate' fields to ensure they are valid dates.
+ *
+ * The format for a valid date is YEAR-MONTH-DAY, where year is four characters, and the month and day are each two (XXXX-XX-XX).
+ *
+ * @returns The Projects component.
+ */
+
 export default function Projects() {
   const { formData, setFormData } = useFormContext();
   const [errors, setErrors] = useState<Record<string, string>>({})

@@ -2,6 +2,27 @@ import { useState } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
 import type { EducationDataType } from '../../lib/types';
 
+/**
+ * The EducationForm component.
+ *
+ * This renders a single education entry form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The form data for the current entry and the error messages for each field
+ * are stored in the `entry` prop and the `errors` state variable, respectively.
+ *
+ * The `handleInputChange` function is used to handle changes to the input
+ * fields. It first validates the input using the `validateInput` function, and
+ * then updates the form data and clears the error message for the updated field.
+ *
+ * The `validateInput` function checks if the input is empty. If it is, it sets
+ * an error message for the field and returns `false`. Otherwise, it returns
+ * `true`.
+ *
+ * @returns The EducationForm component.
+ */
+
 export default function EducationForm({ entry, index }: { entry: EducationDataType, index: number }) {
   const { setFormData } = useFormContext();
 

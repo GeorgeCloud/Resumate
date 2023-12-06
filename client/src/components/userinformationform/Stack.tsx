@@ -3,6 +3,34 @@ import { useFormContext } from '../../contexts/FormContext';
 import type { StackDataType } from '../../lib/types';
 import { PiPlusBold } from "react-icons/pi";
 
+/**
+ * The Stack component.
+ *
+ * This component renders the stack information page of the form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The `inputValues` local state variable stores the current input values for
+ * the languages, frameworks, developer tools, and libraries fields.
+ *
+ * The `errors` local state variable stores the error messages for these fields.
+ *
+ * The `handleInputChange` function is used to handle changes to the input
+ * fields. It updates the `inputValues` state variable with the new value of the
+ * updated field.
+ *
+ * The `validateInput` function checks if the input is empty. If it is, it sets
+ * an error message for the field and returns `false`. Otherwise, it returns
+ * `true`.
+ *
+ * The `handleAddEntry` function is used to add a new entry to the stack data.
+ * It first validates the input using the `validateInput` function. If the
+ * input is valid, it adds the input to the `stackData` array in the form data
+ * and clears the input field.
+ *
+ * @returns Stack
+ */
+
 export default function Stack() {
   const { setFormData } = useFormContext();
 
@@ -50,12 +78,12 @@ export default function Stack() {
         [category]: [...prevData.stackData[category], inputValues[category]],
       },
     }));
-    // Clear the input value after adding data to array
+    // Clear input value after adding data to array
     setInputValues((prevValues) => ({
       ...prevValues,
       [category]: '',
     }));
-    // Clear the error message
+    // Clear error message
     setErrors((prevErrors) => ({
       ...prevErrors,
       [category]: '',

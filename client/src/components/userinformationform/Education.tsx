@@ -3,6 +3,25 @@ import { useFormContext } from '../../contexts/FormContext';
 import EducationForm from './EducationForm';
 import { PiPlusBold } from "react-icons/pi";
 
+/**
+ * The Education component.
+ *
+ * This component renders the education information page of the form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The `handleAddEntry` function is used to add a new entry to the education
+ * data. It creates a new entry with empty fields and adds it to the
+ * `educationData` array in the form data.
+ *
+ * The `useEffect` hook is used to clear the fields of the last entry in the
+ * `educationData` array whenever the component re-renders. This ensures that
+ * the fields of the new entry added by the `handleAddEntry` function are
+ * always empty.
+ *
+ * @returns Education
+ */
+
 export default function Education() {
   const { formData, setFormData } = useFormContext();
 
