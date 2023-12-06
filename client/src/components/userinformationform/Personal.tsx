@@ -1,5 +1,30 @@
 import { useState } from 'react';
 import { useFormContext } from "../../contexts/FormContext";
+import { validateNotEmpty } from '../../lib/utils';
+import { PersonalDataType } from '../../lib/types';
+
+/**
+ * The Personal component.
+ *
+ * This component is responsible for rendering the personal information page of
+ * the form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The form data and the error messages for each field are stored in
+ * the`formData` and `errors` state variables, respectively.
+ *
+ * The`handleInputChange` function is used to handle changes to the input
+ * fields. It first validates the input using the `validateEntry` function, and
+ * then updates the `formData` and `errors` state variables, respectively.
+ *
+ * The`validateEntry` function checks each field in the input. If a field is
+ * empty or invalid, it updates the `errors` state variable with an appropriate
+ * error message.
+ *
+ * @returns Personal
+ *
+ */
 
 export default function Personal() {
   const {
@@ -7,43 +32,58 @@ export default function Personal() {
     setFormData
   } = useFormContext();
 
-  const [errors, setErrors] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
-    linkedIn: '',
-    github: '',
-    title: ''
-  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleInputChange = (field: string, value: string) => {
-    if (!validateInput(field, value)) {
-      return;
-    }
-    setFormData({
+    // Update the form data
+    const updatedFormData = {
       ...formData,
       personalData: {
         ...formData.personalData,
         [field]: value
       },
-    });
-    // Clear the error message
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [field]: '',
-    }));
-  }
+    };
 
-  function validateInput(field: string, value: string): boolean {
-    if (value.trim() === '') {
+    // Validate the updated form data
+    const isValid = validateEntry(updatedFormData.personalData);
+
+    if (isValid) {
+      // If the updated form data is valid, update the formData state
+      setFormData(updatedFormData);
+
+      // Clear the error message
       setErrors((prevErrors) => ({
         ...prevErrors,
-        [field]: 'This field cannot be empty',
+        [field]: '',
       }));
-      return false;
     }
-    return true;
+  }
+
+  function validateEntry(entry: PersonalDataType): boolean {
+    let isValid = true;
+
+    for (const field in entry) {
+      const value = entry[field as keyof PersonalDataType];
+      if (typeof value === 'string') {
+        if (['firstName', 'lastName', 'phoneNumber', 'email', 'linkedIn', 'github', 'title'].includes(field)) {
+          isValid = validateNotEmpty(value);
+        }
+
+        if (isValid) {
+          // Clear the error message
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            [field]: '',
+          }));
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            [field]: `${field} is invalid`,
+          }));
+        }
+      }
+    }
+    return isValid;
   }
 
   return (

@@ -26,6 +26,16 @@ export type ContextPropsType = {
   children: React.ReactNode;
 }
 
+export type PersonalDataType = {
+  firstName: string,
+  lastName: string,
+  phoneNumber: string,
+  email: string,
+  linkedIn: string,
+  github: string,
+  title: string
+}
+
 export type EducationDataType = {
   index?: number;
   schoolName: string;
@@ -63,15 +73,7 @@ export type StackDataType = {
 }
 
 export type FormDataType = {
-  personalData: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    email: string;
-    linkedIn: string;
-    github: string;
-    title: string;
-  },
+  personalData: PersonalDataType,
   educationData: EducationDataType[],
   professionalData: ProfessionalDataType[],
   projectsData: ProjectsDataType[],

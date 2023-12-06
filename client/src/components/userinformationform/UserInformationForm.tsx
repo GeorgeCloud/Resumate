@@ -9,7 +9,31 @@ import Stack from './Stack';
 import Summary from './Summary';
 import type { PageType, FormDataType } from '../../lib/types';
 
-export default function UserInfoForm() {
+/**
+ * The UserInformationForm component.
+ *
+ * This component is responsible for rendering the multi-page form that takes
+ * in the user's information.
+ *
+ * It uses the `useNavigate` and `useParams` hooks from react-router-dom to
+ * handle navigation.
+ *
+ * The `useFormContext` hook is called to accesses the form data state and the
+ * page navigation functions.
+ *
+ * Each of the pages of the form is represented by an object in the 'pages'
+ * array.  Each page object consists of the properties `id`, `name`, and
+ * `component`. Some pages also have a `allowMultipleEntries` property that
+ * indicates whether the user can add multiple entries on that page.
+ *
+ * The `handleNext` and `handlePrev` functions are used to navigate to the next
+ * and previous pages, respectively.
+ *
+ * @returns UserInformationForm
+ *
+ */
+
+export default function UserInformationForm() {
   const navigate = useNavigate();
   const { page } = useParams();
   const { formData, nextPage, prevPage } = useFormContext();
