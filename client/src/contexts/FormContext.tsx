@@ -87,7 +87,7 @@ export function FormProvider({ children }: ContextPropsType) {
 
   function nextPage(data: Partial<FormDataType>) {
     setFormData((prevData) => {
-      const key = 'FORM_DATA'
+      const key = 'formData'
       const updatedData = { ...prevData, ...data };
       localStorage.setItem(key, JSON.stringify(updatedData));
       return updatedData;
