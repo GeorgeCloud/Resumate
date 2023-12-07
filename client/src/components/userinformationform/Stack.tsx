@@ -41,6 +41,13 @@ export default function Stack() {
     libraries: ''
   });
 
+  const [addedEntries, setAddedEntries] = useState({
+    languages: [],
+    frameworks: [],
+    developer_tools: [],
+    libraries: []
+  });
+
   const [errors, setErrors] = useState({
     languages: '',
     frameworks: '',
@@ -71,6 +78,7 @@ export default function Stack() {
     if (!validateInput(category, inputValues[category])) {
       return;
     }
+    // Update the form data with the new entry
     setFormData((prevData) => ({
       ...prevData,
       stackData: {
@@ -78,11 +86,19 @@ export default function Stack() {
         [category]: [...prevData.stackData[category], inputValues[category]],
       },
     }));
-    // Clear input value after adding data to array
+
+    // Update the local state with the added entry
+    setAddedEntries((prevEntries) => ({
+      ...prevEntries,
+      [category]: [...prevEntries[category], inputValues[category]]
+    }));
+
+    // Clear input values
     setInputValues((prevValues) => ({
       ...prevValues,
       [category]: '',
     }));
+
     // Clear error message
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -183,7 +199,32 @@ export default function Stack() {
           <PiPlusBold />
         </button>
       </div>
-
+      <div className="flex justify-evenly items-baseline mt-8">
+        <div className="flex-col">
+          <h3 className="mx-2">Languages</h3>
+          {addedEntries.languages.map((entry, index) => (
+            <p key={`languages_${index}`}>{entry}</p>
+          ))}
+        </div>
+        <div className="flex-col">
+          <h3 className="mx-2">Frameworks</h3>
+          {addedEntries.frameworks.map((entry, index) => (
+            <p key={`frameworks_${index}`}>{entry}</p>
+          ))}
+        </div>
+        <div className="flex-col">
+          <h3 className="mx-2">Developer Tools</h3>
+          {addedEntries.developer_tools.map((entry, index) => (
+            <p key={`developer_tools_${index}`}>{entry}</p>
+          ))}
+        </div>
+        <div className="flex-col">
+          <h3 className="mx-2">Libraries</h3>
+          {addedEntries.libraries.map((entry, index) => (
+            <p key={`libraries_${index}`}>{entry}</p>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
