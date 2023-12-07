@@ -15,6 +15,10 @@ import { PiPlusBold } from "react-icons/pi";
  *
  * The `errors` local state variable stores the error messages for these fields.
  *
+ * The `addedEntries` local state variable is used to display the entries that
+ * the user would like to add to the form data on the screen, so that when next
+ * is clicked, the lists that are displayed will be added to the formData.
+ *
  * The `handleInputChange` function is used to handle changes to the input
  * fields. It updates the `inputValues` state variable with the new value of the
  * updated field.
@@ -23,10 +27,12 @@ import { PiPlusBold } from "react-icons/pi";
  * an error message for the field and returns `false`. Otherwise, it returns
  * `true`.
  *
- * The `handleAddEntry` function is used to add a new entry to the stack data.
- * It first validates the input using the `validateInput` function. If the
- * input is valid, it adds the input to the `stackData` array in the form data
- * and clears the input field.
+ * The `handleAddEntry` function is used to add a new entry to the displayed
+ * list. It first validates the input using the `validateInput` function. If the
+ * input is valid, it adds the value to the addedEntries list and clears the
+ * input field.
+ *
+ * When the user clicks `next`, the formData is updated.
  *
  * @returns Stack
  */
@@ -87,7 +93,7 @@ export default function Stack() {
       },
     }));
 
-    // Update the local state with the added entry
+    // Update the displayed list with the added entry
     setAddedEntries((prevEntries) => ({
       ...prevEntries,
       [category]: [...prevEntries[category], inputValues[category]]
