@@ -1,11 +1,47 @@
 import { useState } from 'react';
 import { useFormContext } from '../../contexts/FormContext';
 import type { StackDataType } from '../../lib/types';
+import { PiPlusBold } from "react-icons/pi";
+
+/**
+ * The Stack component.
+ *
+ * This component renders the stack information page of the form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The `inputValues` local state variable stores the current input values for
+ * the languages, frameworks, developer tools, and libraries fields.
+ *
+ * The `errors` local state variable stores the error messages for these fields.
+ *
+ * The `handleInputChange` function is used to handle changes to the input
+ * fields. It updates the `inputValues` state variable with the new value of the
+ * updated field.
+ *
+ * The `validateInput` function checks if the input is empty. If it is, it sets
+ * an error message for the field and returns `false`. Otherwise, it returns
+ * `true`.
+ *
+ * The `handleAddEntry` function is used to add a new entry to the stack data.
+ * It first validates the input using the `validateInput` function. If the
+ * input is valid, it adds the input to the `stackData` array in the form data
+ * and clears the input field.
+ *
+ * @returns Stack
+ */
 
 export default function Stack() {
   const { setFormData } = useFormContext();
 
   const [inputValues, setInputValues] = useState({
+    languages: '',
+    frameworks: '',
+    developer_tools: '',
+    libraries: ''
+  });
+
+  const [errors, setErrors] = useState({
     languages: '',
     frameworks: '',
     developer_tools: '',
@@ -19,8 +55,22 @@ export default function Stack() {
     }));
   }
 
+  function validateInput(category: keyof StackDataType, value: string): boolean {
+    if (value.trim() === '') {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [category]: 'This field cannot be empty',
+      }));
+      return false;
+    }
+    return true;
+  }
+
   function handleAddEntry(category: keyof StackDataType, event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
+    if (!validateInput(category, inputValues[category])) {
+      return;
+    }
     setFormData((prevData) => ({
       ...prevData,
       stackData: {
@@ -28,18 +78,23 @@ export default function Stack() {
         [category]: [...prevData.stackData[category], inputValues[category]],
       },
     }));
-    // Clear the input value after adding data to array
+    // Clear input value after adding data to array
     setInputValues((prevValues) => ({
       ...prevValues,
+      [category]: '',
+    }));
+    // Clear error message
+    setErrors((prevErrors) => ({
+      ...prevErrors,
       [category]: '',
     }));
   }
 
   return (
-    <div className="border-neutral-600 border-2 rounded-md shadow-md p-4 m-6 w-full">
-      <h2 className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-4">Stack Form</h2>
-
-      <div className="row mb-4 flex justify-between">
+    <div className="w-full">
+      <div className="text-center font-normal underline underline-offset-1 decoration-1 text-xl mb-2">Stack Information</div>
+      <p className="text-xs italic my-2 px-8">Please add one item at a time by clicking the button with the plus sign between each entry.</p>
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="languages" className="text-sm/4">
             Languages
@@ -52,13 +107,18 @@ export default function Stack() {
             type="text"
             value={inputValues.languages}
             onChange={(e) => handleInputChange('languages', e.target.value)}
-            className="p-2 border rounded-md"
+            className="rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('languages', e)}>Add</button>
+          {errors.languages && <p className="error-message">{errors.languages}</p>}
         </div>
+        <button
+          onClick={(e) => handleAddEntry('languages', e)}
+          className="add-entry-button mx-2">
+          <PiPlusBold />
+        </button>
       </div>
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="frameworks" className="text-sm/4">
             Frameworks
@@ -73,11 +133,14 @@ export default function Stack() {
             onChange={(e) => handleInputChange('frameworks', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('frameworks', e)}>Add</button>
+          {errors.frameworks && <p className="error-message">{errors.frameworks}</p>}
         </div>
+        <button onClick={(e) => handleAddEntry('frameworks', e)} className="add-entry-button mx-2">
+          <PiPlusBold />
+        </button>
       </div>
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="developer_tools" className="text-sm/4">
             Developer Tools
@@ -92,11 +155,14 @@ export default function Stack() {
             onChange={(e) => handleInputChange('developer_tools', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('developer_tools', e)}>Add</button>
+          {errors.developer_tools && <p className="error-message">{errors.developer_tools}</p>}
         </div>
+        <button onClick={(e) => handleAddEntry('developer_tools', e)} className="add-entry-button mx-2">
+          <PiPlusBold />
+        </button>
       </div>
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-center">
         <div className="col1">
           <label htmlFor="libraries" className="text-sm/4">
             Libraries
@@ -111,9 +177,13 @@ export default function Stack() {
             onChange={(e) => handleInputChange('libraries', e.target.value)}
             className="p-2 border rounded-md"
           />
-          <button onClick={(e) => handleAddEntry('libraries', e)}>Add</button>
+          {errors.libraries && <p className="error-message">{errors.libraries}</p>}
         </div>
+        <button onClick={(e) => handleAddEntry('libraries', e)} className="add-entry-button mx-2">
+          <PiPlusBold />
+        </button>
       </div>
+
     </div>
   );
 }

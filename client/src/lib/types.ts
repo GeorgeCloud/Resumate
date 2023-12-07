@@ -1,24 +1,42 @@
 /******** userinformationform **********/
 
-export type PageType = {
+export interface PageType {
   id: number;
   name: string;
+  dataType: string;
   component: JSX.Element;
   allowMultipleEntries?: boolean;
 };
 
-export type PageComponentProps = {
-  handleInputChange: (field: string, value: string) => void;
+export interface DatesDataType {
+  startDate: string;
+  endDate: string;
 }
-
 
 /******** context **********/
 
-export type ContextPropsType = {
+export type FormDataSubTypes = PersonalDataType | EducationDataType | EducationDataType[] | ProfessionalDataType | ProfessionalDataType[] | ProjectsDataType | ProjectsDataType[] | StackDataType
+
+export interface AccomplishmentInputProps {
+  formDataSubType: keyof FormDataType;
+  index: number;
+}
+
+export interface ContextPropsType {
   children: React.ReactNode;
 }
 
-export type EducationDataType = {
+export interface PersonalDataType {
+  firstName: string,
+  lastName: string,
+  phoneNumber: string,
+  email: string,
+  linkedIn: string,
+  github: string,
+  title: string
+}
+
+export interface EducationDataType {
   index?: number;
   schoolName: string;
   cityState: string;
@@ -27,54 +45,42 @@ export type EducationDataType = {
   endDate: string;
 }
 
-export type ProfessionalDataType = {
+export interface ProfessionalDataType {
   index?: number;
   title: string;
   companyName: string;
   startDate: string;
   endDate: string;
   cityState: string;
-  contribution1?: string;
-  contribution2?: string;
-  contribution3?: string;
+  accomplishments: string[];
 }
 
-export type ProjectsDataType = {
+export interface ProjectsDataType {
   index?: number;
   projectTitle: string;
   url: string;
   description: string;
   startDate: string;
   endDate: string;
-  contribution1?: string;
-  contribution2?: string;
-  contribution3?: string;
+  accomplishments: string[];
 }
 
-export type StackDataType = {
+export interface StackDataType {
   languages: string[];
   frameworks: string[];
   developer_tools: string[];
   libraries: string[];
 }
 
-export type FormDataType = {
-  personalData: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    email: string;
-    linkedIn: string;
-    github: string;
-    title: string;
-  },
+export interface FormDataType {
+  personalData: PersonalDataType,
   educationData: EducationDataType[],
   professionalData: ProfessionalDataType[],
   projectsData: ProjectsDataType[],
   stackData: StackDataType
 }
 
-export type FormContextPropsTypes = {
+export interface FormContextPropsTypes {
   formData: FormDataType;
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
   currentPage: number;

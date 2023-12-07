@@ -1,22 +1,61 @@
 import { useFormContext } from '../../contexts/FormContext';
+import DatesInput from './DatesInput';
+import AccomplishmentInput from './AccomplishmentInput';
+
 import type { ProfessionalDataType } from '../../lib/types';
 
-export default function ProfessionalForm({ entry, index }: { entry: ProfessionalDataType, index: number }) {
+/**
+ * The ProfessionalForm component.
+ *
+ * This component renders a single professional entry form.
+ *
+ * It uses the `useFormContext` hook to access and update the form data.
+ *
+ * The form data for the current entry and the error messages for each field
+ * are stored in the `entry` prop and the `errors` state variable, respectively.
+ *
+ * The `handleInputChange` function is used to handle changes to the input
+ * fields. It first validates the input using the `validateInput` function, and
+ * then updates the form data and clears the error message for the updated
+ * field.
+ *
+ * The `validateInput` function checks if the input is empty. If it is, it sets
+ * an error message for the field and returns `false`. Otherwise, it returns
+ * `true`.
+ *
+ * The `DatesInput` component is used to handle the input for the start and end
+ * dates. It takes the `entry`, `handleInputChange`, and `errors` props to
+ * manage the dates for the current entry.
+ *
+ * The `AccomplishmentInput` component is used to handle the input for the
+ * accomplishments field. It takes the `formDataSubType` and `index` props to
+ * identify the current entry in the form data.
+ *
+ * As the user adds accomplishments to the array, the list is displayed
+ * to help track what they have added or not added. When the `Next` page is
+ * clicked, the form data will be updated with all items from the displayed
+ * list.
+ *
+ * @returns ProfessionalForm
+ */
+
+export default function ProfessionalForm({ entry, index, errors }: { entry: ProfessionalDataType, index: number, errors: Record<string, string> }) {
   const { setFormData } = useFormContext();
 
-  function handleInputChange(field: string, value: string) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
       professionalData: prevData.professionalData.map((item, i) =>
-        i === index ? { ...item, [field]: value } : item
-      ),
+        i === index ? { ...item, [name]: value } : item
+      )
     }));
-  };
+  }
 
   return (
     <div className="flex flex-col items-between justify-start">
 
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="title" className="text-sm/4">
             Title
@@ -29,11 +68,12 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
             id="title"
             name="title"
             value={entry.title}
-            onChange={(e) => handleInputChange('title', e.target.value)}
+            onChange={handleInputChange}
           />
+          {errors.title && <span className="error">{errors.title}</span>}
         </div>
       </div>
-      <div className="row mb-4 flex justify-between">
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="companyName" className="text-sm/4">
             Company Name
@@ -46,45 +86,17 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
             id="companyName"
             name="companyName"
             value={entry.companyName}
-            onChange={(e) => handleInputChange('companyName', e.target.value)}
+            onChange={handleInputChange}
           />
+          {errors.companyName && <span className="error">{errors.companyName}</span>}
         </div>
       </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="startDate" className="text-sm/4">
-            Start Date
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <input
-            type="text"
-            className="rounded-md"
-            id="startDate"
-            name="startDate"
-            value={entry.startDate}
-            onChange={(e) => handleInputChange('startDate', e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="endDate" className="text-sm/4">
-            End Date
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <input
-            type="text"
-            className="rounded-md"
-            id="endDate"
-            name="endDate"
-            value={entry.endDate}
-            onChange={(e) => handleInputChange('endDate', e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="row mb-4 flex justify-between">
+      <DatesInput
+        entry={entry}
+        handleInputChange={handleInputChange}
+        errors={errors}
+      />
+      <div className="row mb-2 flex justify-between items-baseline">
         <div className="col1">
           <label htmlFor="cityState" className="text-sm/4">
             City & State
@@ -97,59 +109,19 @@ export default function ProfessionalForm({ entry, index }: { entry: Professional
             id="cityState"
             name="cityState"
             value={entry.cityState}
-            onChange={(e) => handleInputChange('cityState', e.target.value)}
+            onChange={handleInputChange}
           />
-        </div>
-      </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="contribution1" className="text-sm/4">
-            Contribution 1
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <textarea
-            className="rounded-md"
-            id="contribution1"
-            name="contribution1"
-            value={entry.contribution1}
-            onChange={(e) => handleInputChange('contribution1', e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="contribution2" className="text-sm/4">
-            Contribution 2
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <textarea
-            className="rounded-md"
-            id="contribution2"
-            name="contribution2"
-            value={entry.contribution2}
-            onChange={(e) => handleInputChange('contribution2', e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="row mb-4 flex justify-between">
-        <div className="col1">
-          <label htmlFor="contribution3" className="text-sm/4">
-            Contribution 3
-          </label>
-        </div>
-        <div className="col2 flex justify-center">
-          <textarea
-            className="rounded-md"
-            id="contribution3"
-            name="contribution3"
-            value={entry.contribution3}
-            onChange={(e) => handleInputChange('contribution3', e.target.value)}
-          />
+          {errors.cityState && <span className="error">{errors.cityState}</span>}
         </div>
       </div>
 
+      <AccomplishmentInput formDataSubType='professionalData' index={index} />
+
+      <ul>
+        {entry.accomplishments?.map((accomplishment, i) => (
+          <li key={i}>{accomplishment}</li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -50,11 +50,21 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  /* min-width: 320px; */
+  width: 100%;
+  margin: 0 auto;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  text-shadow: 1px 1px 3px rgba(211, 210, 210, 0.76);
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 h1 {
@@ -63,7 +73,7 @@ h1 {
 }
 
 button {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   font-size: 1em;
   font-weight: 500;
   background-color: var(--primary);
@@ -71,7 +81,9 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   padding: 0.75rem 1.25rem;
-  border-radius: 0.25rem;
+  border-radius: 8px;
+  box-shadow: 10px 10px 20px #cacaca,
+    -10px -10px 20px #f6f6f6;
 }
 
 button:hover {
@@ -83,11 +95,22 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.add-entry-button {
+  border: 1px solid transparent;
+  font-size: .75em;
+  font-weight: 400;
+  background-color: var(--primary);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+}
 
 .col1 {
   text-align: left;
   float: left;
-  width: 35%;
+  width: 25%;
   margin-top: 0.3rem;
 }
 
@@ -103,7 +126,7 @@ input[type=url],
 input[type=tel],
 select,
 textarea {
-  width: 80%;
+  width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--primary);
   border-radius: 0.25rem;
@@ -111,26 +134,14 @@ textarea {
 }
 
 label {
-  padding: 0.25rem 0.25rem 0.25rem 0;
+  /* padding: 0.25rem 0.25rem 0.25rem 0; */
   display: inline-block;
   width: 100%;
 }
-
 
 /* Clear floats after the columns */
 .row::after {
   content: "";
   display: table;
   clear: both;
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-
-  .col1,
-  .col2,
-  input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
 }
