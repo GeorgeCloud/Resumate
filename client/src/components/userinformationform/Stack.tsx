@@ -15,6 +15,10 @@ import { PiPlusBold } from "react-icons/pi";
  *
  * The `errors` local state variable stores the error messages for these fields.
  *
+ * The `addedEntries` local state variable is used to display the entries that
+ * the user would like to add to the form data on the screen, so that when next
+ * is clicked, the lists that are displayed will be added to the formData.
+ *
  * The `handleInputChange` function is used to handle changes to the input
  * fields. It updates the `inputValues` state variable with the new value of the
  * updated field.
@@ -23,10 +27,12 @@ import { PiPlusBold } from "react-icons/pi";
  * an error message for the field and returns `false`. Otherwise, it returns
  * `true`.
  *
- * The `handleAddEntry` function is used to add a new entry to the stack data.
- * It first validates the input using the `validateInput` function. If the
- * input is valid, it adds the input to the `stackData` array in the form data
- * and clears the input field.
+ * The `handleAddEntry` function is used to add a new entry to the displayed
+ * list. It first validates the input using the `validateInput` function. If the
+ * input is valid, it adds the value to the addedEntries list and clears the
+ * input field.
+ *
+ * When the user clicks `next`, the formData is updated.
  *
  * @returns Stack
  */
@@ -39,6 +45,13 @@ export default function Stack() {
     frameworks: '',
     developer_tools: '',
     libraries: ''
+  });
+
+  const [addedEntries, setAddedEntries] = useState({
+    languages: [],
+    frameworks: [],
+    developer_tools: [],
+    libraries: []
   });
 
   const [errors, setErrors] = useState({
@@ -71,6 +84,7 @@ export default function Stack() {
     if (!validateInput(category, inputValues[category])) {
       return;
     }
+    // Update the form data with the new entry
     setFormData((prevData) => ({
       ...prevData,
       stackData: {
@@ -78,11 +92,19 @@ export default function Stack() {
         [category]: [...prevData.stackData[category], inputValues[category]],
       },
     }));
-    // Clear input value after adding data to array
+
+    // Update the displayed list with the added entry
+    setAddedEntries((prevEntries) => ({
+      ...prevEntries,
+      [category]: [...prevEntries[category], inputValues[category]]
+    }));
+
+    // Clear input values
     setInputValues((prevValues) => ({
       ...prevValues,
       [category]: '',
     }));
+
     // Clear error message
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -183,7 +205,32 @@ export default function Stack() {
           <PiPlusBold />
         </button>
       </div>
-
+      <div className="flex justify-evenly items-baseline mt-8">
+        <div className="flex-col">
+          <h3 className="mx-2">Languages</h3>
+          {addedEntries.languages.map((entry, index) => (
+            <p key={`languages_${index}`}>{entry}</p>
+          ))}
+        </div>
+        <div className="flex-col">
+          <h3 className="mx-2">Frameworks</h3>
+          {addedEntries.frameworks.map((entry, index) => (
+            <p key={`frameworks_${index}`}>{entry}</p>
+          ))}
+        </div>
+        <div className="flex-col">
+          <h3 className="mx-2">Developer Tools</h3>
+          {addedEntries.developer_tools.map((entry, index) => (
+            <p key={`developer_tools_${index}`}>{entry}</p>
+          ))}
+        </div>
+        <div className="flex-col">
+          <h3 className="mx-2">Libraries</h3>
+          {addedEntries.libraries.map((entry, index) => (
+            <p key={`libraries_${index}`}>{entry}</p>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

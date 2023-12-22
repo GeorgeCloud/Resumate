@@ -10,9 +10,9 @@
   :root {
     --text: #444140;
     --background: #e8eaf8;
-    --primary: #8d818c;
-    --secondary: #e2dadb;
-    --accent: #556b7c;
+    --primary: #bac0c5;
+    --secondary: #dbd9dc;
+    --accent: #586162;
   }
 }
 
@@ -20,9 +20,9 @@
   :root {
     --text: #bfbcbb;
     --background: #444140;
-    --primary: #7e727d;
-    --secondary: #251d1e;
-    --accent: #8399aa;
+    --primary: #9fa7a8;
+    --secondary: #cbc4cf;
+    --accent: #3a4045;
   }
 }
 
@@ -57,7 +57,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  text-shadow: 1px 1px 3px rgba(211, 210, 210, 0.76);
 }
 
 #root {
@@ -73,7 +72,7 @@ h1 {
 }
 
 button {
-  border: 2px solid transparent;
+  border: 3px solid transparent;
   font-size: 1em;
   font-weight: 500;
   background-color: var(--primary);
@@ -82,8 +81,6 @@ button {
   transition: border-color 0.25s;
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
-  box-shadow: 10px 10px 20px #cacaca,
-    -10px -10px 20px #f6f6f6;
 }
 
 button:hover {
